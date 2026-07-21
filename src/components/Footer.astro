@@ -1,0 +1,39 @@
+---
+import { ArrowUpRight, Mail } from 'lucide-astro';
+import site from '@/data/site.json';
+import organizers from '@/data/organizers.json';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-intro">
+      <span class="kicker kicker--light">DMDA 2026</span>
+      <h2>Data becomes useful when it informs a decision.</h2>
+      <p>{site.date} · {site.city}</p>
+    </div>
+    <div class="footer-links">
+      <h3>Workshop</h3>
+      <a href={`${base}call-for-papers/`}>Call for Papers</a>
+      <a href={`${base}program/`}>Program</a>
+      <a href={`${base}venue/`}>Venue</a>
+      <a href={`${base}organizers/`}>Organizers</a>
+    </div>
+    <div class="footer-links">
+      <h3>INFORMS</h3>
+      <a href={site.officialUrl} target="_blank" rel="noreferrer">Official workshop listing <ArrowUpRight size={14} /></a>
+      <a href="https://connect.informs.org/data-mining/home" target="_blank" rel="noreferrer">Data Mining Society <ArrowUpRight size={14} /></a>
+      <a href={site.annualMeetingUrl} target="_blank" rel="noreferrer">2026 Annual Meeting <ArrowUpRight size={14} /></a>
+    </div>
+    <div class="footer-links">
+      <h3>Contact</h3>
+      <a href={`mailto:${organizers[0].email}`}><Mail size={14} /> Email the co-chairs</a>
+      <span>Questions about submissions, registration, or the program are welcome.</span>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2026 INFORMS Workshop on Data Mining & Decision Analytics</span>
+    <span>Organized by the INFORMS Data Mining Society</span>
+  </div>
+</footer>

@@ -1,0 +1,15 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import site from '@/data/site.json';
+---
+
+<BaseLayout title={`Page not found | ${site.shortName}`}>
+  <section class="section section--ink not-found"><div class="container"><span class="kicker kicker--light">404</span><h1>That page is not on the program.</h1><p>Use the main navigation to find the workshop information you need.</p><a class="button button--primary" href={import.meta.env.BASE_URL}>Return home</a></div></section>
+</BaseLayout>
+
+<style>
+  .not-found { min-height: 60vh; display: grid; align-items: center; }
+  .not-found h1 { max-width: 700px; font-size: 67px; }
+  .not-found p { margin-bottom: 28px; color: rgba(255, 253, 250, .74); }
+  @media (max-width: 560px) { .not-found h1 { font-size: 44px; } }
+</style>

@@ -1,0 +1,18 @@
+---
+import { ArrowRight } from 'lucide-astro';
+import deadlines from '@/data/deadlines.json';
+---
+
+<ol class="deadline-list">
+  {deadlines.map((deadline, index) => (
+    <li class:list={[deadline.featured && 'is-featured']}>
+      <span class="deadline-number">{String(index + 1).padStart(2, '0')}</span>
+      <time datetime={deadline.iso}>{deadline.date}</time>
+      <div>
+        <strong>{deadline.label}</strong>
+        <span>{deadline.detail}</span>
+      </div>
+      {deadline.featured && <ArrowRight size={20} aria-hidden="true" />}
+    </li>
+  ))}
+</ol>

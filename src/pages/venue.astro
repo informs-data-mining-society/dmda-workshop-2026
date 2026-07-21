@@ -1,0 +1,46 @@
+---
+import { ArrowUpRight, Car, Hotel, MapPin, Plane } from 'lucide-astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import site from '@/data/site.json';
+---
+
+<BaseLayout title={`Venue & Travel | ${site.shortName}`} description="Travel information for the DMDA 2026 workshop in San Francisco, held in conjunction with the INFORMS Annual Meeting.">
+  <PageHero eyebrow="San Francisco · California" title="Venue & Travel" intro="DMDA takes place on the Saturday before the 2026 INFORMS Annual Meeting. Workshop room details will be added as soon as they are confirmed." />
+  <section class="section section--white">
+    <div class="container venue-grid">
+      <article class="venue-lead">
+        <span class="kicker">The city by the bay</span>
+        <h2>San Francisco, California</h2>
+        <p>The 2026 INFORMS Annual Meeting takes place at Moscone Center South and the Marriott Marquis San Francisco. DMDA is scheduled for Saturday, October 31, with the annual meeting beginning November 1.</p>
+        <a class="button button--secondary" href={site.annualMeetingUrl} target="_blank" rel="noreferrer">Annual Meeting travel information <ArrowUpRight size={16} /></a>
+      </article>
+      <div class="venue-facts">
+        <div><MapPin size={21} /><span><strong>Primary meeting venues</strong><small>Moscone Center South<br />747 Howard Street<br />Marriott Marquis San Francisco<br />780 Mission Street</small></span></div>
+        <div><Plane size={21} /><span><strong>Nearest airport</strong><small>San Francisco International Airport (SFO)</small></span></div>
+        <div><Car size={21} /><span><strong>Getting around</strong><small>Moscone Center is served by BART, Muni, and downtown streetcar lines.</small></span></div>
+        <div><Hotel size={21} /><span><strong>Hotel block</strong><small>Official INFORMS hotels and booking information will be listed by the Annual Meeting team.</small></span></div>
+      </div>
+    </div>
+  </section>
+  <section class="section section--teal">
+    <div class="container venue-note"><span class="kicker kicker--light">More details soon</span><h2>Save the date, then plan your stay.</h2><p>Room assignments, accessibility information, and local recommendations will be added to this page as the workshop logistics are finalized.</p></div>
+  </section>
+</BaseLayout>
+
+<style>
+  .venue-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; }
+  .venue-lead h2 { margin-bottom: 22px; font-size: 52px; }
+  .venue-lead p { max-width: 550px; margin-bottom: 28px; color: var(--ink-soft); font-size: 17px; }
+  .venue-facts { border-top: 1px solid var(--line); }
+  .venue-facts > div { display: grid; grid-template-columns: 30px 1fr; gap: 15px; padding: 21px 0; border-bottom: 1px solid var(--line); }
+  .venue-facts svg { color: var(--teal); }
+  .venue-facts span { display: grid; gap: 7px; }
+  .venue-facts strong { font-size: 15px; }
+  .venue-facts small { color: var(--ink-soft); font-size: 13px; }
+  .venue-note { max-width: 760px; margin-left: max(24px, calc((100% - var(--content)) / 2)); }
+  .venue-note h2 { margin-bottom: 16px; font-size: 48px; }
+  .venue-note p { max-width: 600px; color: rgba(255, 253, 250, .73); font-size: 17px; }
+  @media (max-width: 820px) { .venue-grid { grid-template-columns: 1fr; gap: 52px; } }
+  @media (max-width: 560px) { .venue-lead h2, .venue-note h2 { font-size: 39px; } .venue-note { margin-left: 16px; } }
+</style>

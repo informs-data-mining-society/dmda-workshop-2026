@@ -1,0 +1,30 @@
+[
+  {
+    "date": "August 1, 2026",
+    "iso": "2026-08-01T23:59:00-04:00",
+    "label": "Paper submission deadline",
+    "detail": "11:59 PM Eastern Time",
+    "featured": true
+  },
+  {
+    "date": "September 7, 2026",
+    "iso": "2026-09-07",
+    "label": "Competition finalists announced",
+    "detail": "Theoretical and applied research tracks",
+    "featured": false
+  },
+  {
+    "date": "October 17, 2026",
+    "iso": "2026-10-17",
+    "label": "Workshop registration deadline",
+    "detail": "Annual Meeting registration is also required",
+    "featured": false
+  },
+  {
+    "date": "October 31, 2026",
+    "iso": "2026-10-31",
+    "label": "DMDA Workshop",
+    "detail": "San Francisco, California",
+    "featured": false
+  }
+]

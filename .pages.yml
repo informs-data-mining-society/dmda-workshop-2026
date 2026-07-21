@@ -1,0 +1,42 @@
+media:
+  input: public/images
+  output: /images
+
+content:
+  - name: site
+    label: Workshop details
+    type: file
+    path: src/data/site.json
+    format: json
+    fields:
+      - { name: name, label: Full workshop name, type: string }
+      - { name: shortName, label: Short name, type: string }
+      - { name: edition, label: Edition, type: string }
+      - { name: date, label: Display date, type: string }
+      - { name: city, label: City, type: string }
+      - { name: venue, label: Venue, type: string }
+      - { name: description, label: Description, type: text }
+      - { name: officialUrl, label: Official listing URL, type: string }
+      - { name: cfpUrl, label: CFP URL, type: string }
+      - { name: submissionUrl, label: Paper submission URL, type: string }
+      - { name: registrationUrl, label: Registration URL, type: string }
+  - name: deadlines
+    label: Important dates
+    type: file
+    path: src/data/deadlines.json
+    format: json
+  - name: organizers
+    label: Organizers
+    type: file
+    path: src/data/organizers.json
+    format: json
+  - name: topics
+    label: Topics
+    type: file
+    path: src/data/topics.json
+    format: json
+  - name: archive
+    label: Previous workshops
+    type: file
+    path: src/data/archive.json
+    format: json

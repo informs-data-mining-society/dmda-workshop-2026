@@ -1,0 +1,76 @@
+---
+import { ArrowUpRight, Menu, X } from 'lucide-astro';
+import site from '@/data/site.json';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const navItems = [
+  { label: 'Home', href: base },
+  { label: 'Call for Papers', href: `${base}call-for-papers/` },
+  { label: 'Program', href: `${base}program/` },
+  { label: 'Venue', href: `${base}venue/` },
+  { label: 'Organizers', href: `${base}organizers/` },
+  { label: 'Archive', href: `${base}archive/` }
+];
+
+const isActive = (href: string) => {
+  if (href === base) return currentPath === base || currentPath === `${base}/`;
+  return currentPath.startsWith(href);
+};
+---
+
+<div class="society-bar">
+  <div class="container society-bar__inner">
+    <span>Sponsored by the INFORMS Data Mining Society</span>
+    <a href={site.annualMeetingUrl} target="_blank" rel="noreferrer">
+      2026 Annual Meeting <ArrowUpRight size={14} strokeWidth={1.8} />
+    </a>
+  </div>
+</div>
+
+<header class="site-header" data-header>
+  <div class="container header-inner">
+    <a class="brand" href={base} aria-label="DMDA 2026 home">
+      <span class="brand-mark" aria-hidden="true"><b>DM</b><b>DA</b></span>
+      <span class="brand-copy"><strong>DMDA</strong><small>San Francisco · 2026</small></span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-nav">
+      <Menu class="nav-open-icon" size={22} />
+      <X class="nav-close-icon" size={22} />
+    </button>
+
+    <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+      {navItems.map((item) => (
+        <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
+      ))}
+      <a class="nav-submit" href={site.submissionUrl} target="_blank" rel="noreferrer">
+        Submit a paper <ArrowUpRight size={15} />
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector('[data-header]');
+  const toggle = header?.querySelector<HTMLButtonElement>('.nav-toggle');
+  const nav = header?.querySelector<HTMLElement>('.site-nav');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Open navigation' : 'Close navigation');
+    nav?.classList.toggle('is-open', !isOpen);
+  });
+
+  nav?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      toggle?.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('is-open');
+    });
+  });
+</script>
