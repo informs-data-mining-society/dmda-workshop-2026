@@ -6,12 +6,12 @@ import archive from '@/data/archive.json';
 import site from '@/data/site.json';
 ---
 
-<BaseLayout title={`Previous Workshops | ${site.shortName}`} description="Previous editions of the INFORMS Workshop on Data Mining and Decision Analytics.">
-  <PageHero eyebrow="A growing series" title="Previous workshops" intro="Explore earlier editions of DMDA and the research communities they brought together." />
+<BaseLayout title={`Past Workshops | ${site.shortName}`} description="Current and previous editions of the INFORMS Workshop on Data Mining and Decision Analytics.">
+  <PageHero eyebrow="A growing series" title="Past Workshops" intro="Explore current and earlier editions of DMDA and the research communities they brought together." />
   <section class="section section--white"><div class="container archive-list">
     <div class="archive-intro"><ArchiveIcon size={24} /><p>The workshop is organized annually by the INFORMS Data Mining Society in conjunction with the INFORMS Annual Meeting.</p></div>
-    {archive.map((event) => <a class="archive-row" href={event.url} target="_blank" rel="noreferrer"><span class="archive-edition">{event.edition}</span><span><strong>{event.year} · {event.city}</strong><small>INFORMS Workshop on Data Mining & Decision Analytics</small></span><ArrowUpRight size={18} /></a>)}
     <a class="archive-row archive-row--current" href={import.meta.env.BASE_URL}><span class="archive-edition">21st</span><span><strong>2026 · San Francisco</strong><small>Current workshop</small></span><ArrowUpRight size={18} /></a>
+    {archive.map((event) => <a class="archive-row" href={event.url} target="_blank" rel="noreferrer"><span class="archive-edition">{event.edition}</span><span><strong>{event.year} · {event.city}</strong><small>INFORMS Workshop on Data Mining & Decision Analytics</small></span><ArrowUpRight size={18} /></a>)}
   </div></section>
 </BaseLayout>
 
