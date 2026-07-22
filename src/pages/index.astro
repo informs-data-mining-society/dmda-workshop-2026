@@ -126,7 +126,6 @@ const eventJsonLd = {
           <span class="kicker">Workshop co-chairs</span>
           <h2>Organized across institutions.</h2>
         </div>
-        <a class="button button--secondary" href={`${base}organizers/`}>Meet the organizers <ArrowRight size={16} /></a>
       </div>
       <div class="organizer-row">
         {organizers.map((organizer) => (
@@ -135,22 +134,11 @@ const eventJsonLd = {
               {organizer.name.split(' ').map((part) => part[0]).join('')}
             </span>
             <h3>{organizer.name}</h3>
+            <a class="organizer-email" href={`mailto:${organizer.email}`}>{organizer.email}</a>
             <p>{organizer.institution}</p>
           </article>
         ))}
       </div>
-    </div>
-  </section>
-
-  <section class="submit-band">
-    <div class="container submit-band__inner">
-      <div>
-        <span class="kicker kicker--light">Submissions open</span>
-        <h2>Bring your recent work to San Francisco.</h2>
-      </div>
-      <a class="button button--primary" href={site.submissionUrl} target="_blank" rel="noreferrer">
-        Submit a paper <ArrowUpRight size={17} />
-      </a>
     </div>
   </section>
 
@@ -393,29 +381,22 @@ const eventJsonLd = {
     font-weight: 500;
   }
 
+  .organizer-email {
+    display: inline-block;
+    margin-bottom: 11px;
+    color: var(--teal-dark);
+    font-size: 13px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+    text-decoration: underline;
+    text-decoration-color: rgba(13, 77, 72, 0.24);
+    text-underline-offset: 4px;
+  }
+
   .organizer-mini p {
     margin-bottom: 0;
     color: var(--ink-soft);
     font-size: 13px;
-  }
-
-  .submit-band {
-    padding-block: 64px;
-    color: var(--white);
-    background: var(--teal-dark);
-    border-top: 8px solid var(--yellow);
-  }
-
-  .submit-band__inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-  }
-
-  .submit-band h2 {
-    margin-bottom: 0;
-    font-size: 42px;
   }
 
   @media (max-width: 820px) {
@@ -529,8 +510,7 @@ const eventJsonLd = {
       font-size: 38px;
     }
 
-    .organizer-heading,
-    .submit-band__inner {
+    .organizer-heading {
       align-items: flex-start;
       flex-direction: column;
     }
@@ -550,10 +530,6 @@ const eventJsonLd = {
 
     .organizer-mini:last-child {
       border-bottom: 0;
-    }
-
-    .submit-band h2 {
-      font-size: 34px;
     }
   }
 </style>
