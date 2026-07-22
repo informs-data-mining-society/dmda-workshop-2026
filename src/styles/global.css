@@ -7,7 +7,7 @@
   --line: #c4d0e8;
   --teal: #004aae;
   --teal-dark: #002676;
-  --red: #fc9313;
+  --gold-dark: #fc9313;
   --yellow: #fdb515;
   --content: 1180px;
   --serif: Georgia, 'Times New Roman', serif;
@@ -158,7 +158,7 @@ h3 {
   grid-template-columns: 1fr 1fr;
   color: var(--white);
   background: var(--ink);
-  border-left: 5px solid var(--red);
+  border-left: 5px solid var(--gold-dark);
 }
 
 .brand-mark b {
@@ -208,7 +208,7 @@ h3 {
   left: 0;
   height: 2px;
   content: '';
-  background: var(--red);
+  background: var(--gold-dark);
 }
 
 .site-nav .nav-submit {
@@ -218,7 +218,7 @@ h3 {
   gap: 8px;
   padding: 0 16px;
   color: var(--ink);
-  background: var(--red);
+  background: var(--gold-dark);
 }
 
 .nav-toggle {
@@ -357,7 +357,7 @@ h3 {
   padding-block: 92px 72px;
   color: var(--white);
   background: var(--ink);
-  border-bottom: 9px solid var(--red);
+  border-bottom: 9px solid var(--gold-dark);
 }
 
 .page-hero::after {
@@ -476,7 +476,7 @@ h3 {
 }
 
 .deadline-number {
-  color: var(--red);
+  color: var(--gold-dark);
   font-family: var(--serif);
   font-size: 20px;
 }
