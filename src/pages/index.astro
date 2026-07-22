@@ -54,6 +54,11 @@ const sponsorshipTiers = [
   { level: 'Gold Level', detail: 'Sponsor recognition will be listed here.' },
   { level: 'Silver Level', detail: 'Sponsor recognition will be listed here.' }
 ];
+const dataChallengeItems = [
+  { label: 'Problem and data', detail: 'Challenge topic, dataset access, and evaluation criteria will be announced here.' },
+  { label: 'Timeline', detail: 'Registration, testing, leaderboard, finalist, and report deadlines will be posted once confirmed.' },
+  { label: 'Workshop session', detail: 'Finalist teams will present their solutions during a dedicated Data Challenge session at DMDA 2026.' }
+];
 ---
 
 <BaseLayout jsonLd={eventJsonLd}>
@@ -176,6 +181,26 @@ const sponsorshipTiers = [
         <div class="program-row"><time>12:00</time><span>Lunch and community conversations</span><em>Details coming soon</em></div>
         <div class="program-row"><time>13:30</time><span>Research presentations and panels</span><em>Details coming soon</em></div>
         <div class="program-row"><time>17:00</time><span>Workshop close</span><em>Details coming soon</em></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section data-challenge-section" id="data-challenge">
+    <div class="container data-challenge-grid">
+      <div>
+        <span class="kicker">Data Challenge</span>
+        <h2>Competition details coming soon.</h2>
+      </div>
+      <div class="data-challenge-copy">
+        <p>The Data Challenge has traditionally been organized as part of the DMDA Workshop, with a dedicated session during the workshop for finalist presentations.</p>
+        <div class="data-challenge-items">
+          {dataChallengeItems.map((item) => (
+            <article>
+              <strong>{item.label}</strong>
+              <p>{item.detail}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </div>
   </section>
@@ -546,6 +571,50 @@ const sponsorshipTiers = [
     font-style: normal;
   }
 
+  .data-challenge-grid {
+    display: grid;
+    grid-template-columns: 0.74fr 1.26fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .data-challenge-grid h2 {
+    margin-bottom: 0;
+    font-size: 42px;
+  }
+
+  .data-challenge-copy > p {
+    max-width: 720px;
+    margin-bottom: 28px;
+    color: var(--ink-soft);
+    font-size: 18px;
+  }
+
+  .data-challenge-items {
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .data-challenge-items article {
+    display: grid;
+    grid-template-columns: 185px 1fr;
+    gap: 24px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .data-challenge-items strong {
+    color: var(--teal-dark);
+    font-size: 15px;
+  }
+
+  .data-challenge-items p {
+    margin-bottom: 0;
+    color: var(--ink-soft);
+    font-size: 14px;
+  }
+
   .sponsorship-head {
     display: flex;
     align-items: end;
@@ -759,6 +828,11 @@ const sponsorshipTiers = [
       grid-template-columns: 1fr;
     }
 
+    .data-challenge-grid {
+      grid-template-columns: 1fr;
+      gap: 34px;
+    }
+
     .sponsorship-head {
       align-items: flex-start;
       flex-direction: column;
@@ -853,6 +927,15 @@ const sponsorshipTiers = [
 
     .program-row em {
       grid-column: 2;
+    }
+
+    .data-challenge-grid h2 {
+      font-size: 34px;
+    }
+
+    .data-challenge-items article {
+      grid-template-columns: 1fr;
+      gap: 5px;
     }
 
     .past-compact {
