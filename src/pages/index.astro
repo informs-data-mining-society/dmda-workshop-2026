@@ -5,7 +5,6 @@ import {
   CalendarDays,
   CheckCircle2,
   FileText,
-  History,
   Info,
   MapPin,
   Send
@@ -80,8 +79,7 @@ const eventJsonLd = {
           <span class="venue-addresses">Moscone Center South, 747 Howard Street<br />Marriott Marquis San Francisco, 780 Mission Street</span>
         </span>
       </div>
-      <div class="deadline-countdown" data-deadline="2026-08-01T23:59:00-04:00">
-        <span class="countdown-value" aria-hidden="true">11</span>
+      <div class="deadline-countdown">
         <span><small>Paper deadline</small><strong>August 1 · 11:59 PM ET</strong></span>
       </div>
     </div>
@@ -201,40 +199,19 @@ const eventJsonLd = {
   </section>
 
   <section class="section past-section" id="past-workshops">
-    <div class="container past-list">
-      <div class="section-heading">
+    <div class="container past-compact">
+      <div>
         <span class="kicker">Past Workshops</span>
-        <h2>DMDA across recent INFORMS Annual Meetings.</h2>
-        <p>The workshop is organized annually by the INFORMS Data Mining Society in conjunction with the INFORMS Annual Meeting.</p>
+        <h2>Recent DMDA workshops.</h2>
       </div>
-      <div class="past-intro"><History size={24} /><p>Use these links to visit previous workshop websites and the current 2026 workshop page.</p></div>
-      <a class="past-row past-row--current" href={`${base}#top`}>
-        <span class="past-edition">21st</span>
-        <span><strong>2026 · San Francisco</strong><small>Current workshop</small></span>
-        <ArrowUpRight size={18} />
-      </a>
-      {pastWorkshops.map((event) => (
-        <a class="past-row" href={event.url} target="_blank" rel="noreferrer">
-          <span class="past-edition">{event.edition}</span>
-          <span><strong>{event.year} · {event.city}</strong><small>INFORMS Workshop on Data Mining & Decision Analytics</small></span>
-          <ArrowUpRight size={18} />
-        </a>
-      ))}
+      <ul class="past-links">
+        <li><a href={`${base}#top`}>2026 · San Francisco</a><span>21st · Current</span></li>
+        {pastWorkshops.map((event) => (
+          <li><a href={event.url} target="_blank" rel="noreferrer">{event.year} · {event.city}</a><span>{event.edition}</span></li>
+        ))}
+      </ul>
     </div>
   </section>
-
-  <script>
-    const countdown = document.querySelector<HTMLElement>('[data-deadline]');
-    if (countdown) {
-      const deadline = new Date(countdown.dataset.deadline ?? '').getTime();
-      const days = Math.max(0, Math.ceil((deadline - Date.now()) / 86_400_000));
-      const value = countdown.querySelector<HTMLElement>('.countdown-value');
-      if (value) {
-        value.textContent = String(days);
-        value.setAttribute('aria-label', `${days} days until the paper submission deadline`);
-      }
-    }
-  </script>
 </BaseLayout>
 
 <style>
@@ -322,7 +299,7 @@ const eventJsonLd = {
     border-right: 0;
   }
 
-  .event-ribbon span:not(.countdown-value) {
+  .event-ribbon span {
     display: grid;
   }
 
@@ -342,14 +319,6 @@ const eventJsonLd = {
     color: rgba(255, 253, 250, 0.68);
     font-size: 12px;
     line-height: 1.35;
-  }
-
-  .countdown-value {
-    min-width: 45px;
-    color: var(--yellow);
-    font-family: var(--serif);
-    font-size: 38px;
-    line-height: 1;
   }
 
   .intro-grid {
@@ -604,82 +573,45 @@ const eventJsonLd = {
     font-size: 13px;
   }
 
-  .past-list {
-    max-width: 900px;
-  }
-
-  .past-intro {
-    max-width: 610px;
+  .past-compact {
     display: grid;
-    grid-template-columns: 30px 1fr;
-    gap: 14px;
-    margin-bottom: 34px;
-    color: var(--teal-dark);
+    grid-template-columns: 0.6fr 1.4fr;
+    gap: 48px;
+    align-items: start;
   }
 
-  .past-intro p {
+  .past-compact h2 {
     margin-bottom: 0;
-    color: var(--ink-soft);
+    font-size: 34px;
   }
 
-  .past-row {
-    min-height: 105px;
-    display: grid;
-    grid-template-columns: 90px 1fr 24px;
-    gap: 20px;
-    align-items: center;
-    padding: 17px 14px;
-    color: var(--ink);
+  .past-links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
     border-top: 1px solid var(--line);
-    text-decoration: none;
   }
 
-  .past-row:last-child {
+  .past-links li {
+    min-height: 47px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
     border-bottom: 1px solid var(--line);
   }
 
-  .past-row:hover {
+  .past-links a {
     color: var(--teal-dark);
-    background: #edf2ed;
+    font-weight: 750;
+    text-decoration-color: rgba(13, 77, 72, 0.25);
   }
 
-  .past-edition {
-    color: var(--red);
-    font-family: var(--serif);
-    font-size: 25px;
-  }
-
-  .past-row span:nth-child(2) {
-    display: grid;
-    gap: 6px;
-  }
-
-  .past-row strong {
-    font-size: 17px;
-  }
-
-  .past-row small {
+  .past-links span {
     color: var(--ink-soft);
     font-size: 12px;
-  }
-
-  .past-row--current {
-    color: var(--white);
-    background: var(--teal-dark);
-    border-color: var(--teal-dark);
-  }
-
-  .past-row--current .past-edition {
-    color: var(--yellow);
-  }
-
-  .past-row--current small {
-    color: rgba(255, 253, 250, 0.68);
-  }
-
-  .past-row--current:hover {
-    color: var(--white);
-    background: var(--teal);
+    font-weight: 700;
+    text-transform: uppercase;
   }
 
   @media (max-width: 820px) {
@@ -816,9 +748,9 @@ const eventJsonLd = {
       grid-column: 2;
     }
 
-    .past-row {
-      grid-template-columns: 60px 1fr 20px;
-      gap: 12px;
+    .past-compact {
+      grid-template-columns: 1fr;
+      gap: 28px;
     }
 
     .organizer-heading {
@@ -841,6 +773,13 @@ const eventJsonLd = {
 
     .organizer-mini:last-child {
       border-bottom: 0;
+    }
+
+    .past-links li {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 2px;
+      padding: 11px 0;
     }
   }
 </style>
