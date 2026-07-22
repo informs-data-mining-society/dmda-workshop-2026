@@ -1,14 +1,14 @@
 :root {
-  --ink: #15201f;
-  --ink-soft: #30413e;
-  --paper: #f6f3eb;
-  --white: #fffdfa;
-  --mist: #dfe8e4;
-  --line: #c9d0ca;
-  --teal: #176b63;
-  --teal-dark: #0d4d48;
-  --red: #d64a34;
-  --yellow: #efbb43;
+  --ink: #002676;
+  --ink-soft: #253b6f;
+  --paper: #f7f4ea;
+  --white: #fffdf7;
+  --mist: #e6eef8;
+  --line: #c4d0e8;
+  --teal: #004aae;
+  --teal-dark: #002676;
+  --red: #fc9313;
+  --yellow: #fdb515;
   --content: 1180px;
   --serif: Georgia, 'Times New Roman', serif;
   --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -129,8 +129,8 @@ h3 {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(246, 243, 235, 0.96);
-  border-bottom: 1px solid rgba(21, 32, 31, 0.16);
+  background: rgba(247, 244, 234, 0.96);
+  border-bottom: 1px solid rgba(0, 38, 118, 0.16);
   backdrop-filter: blur(12px);
 }
 
@@ -217,7 +217,7 @@ h3 {
   align-items: center;
   gap: 8px;
   padding: 0 16px;
-  color: var(--white);
+  color: var(--ink);
   background: var(--red);
 }
 
@@ -261,12 +261,12 @@ h3 {
 }
 
 .button--primary {
-  color: var(--white);
-  background: var(--red);
+  color: var(--ink);
+  background: var(--yellow);
 }
 
 .button--primary:hover {
-  background: #b93725;
+  background: #ffc31b;
 }
 
 .button--secondary {
@@ -617,7 +617,7 @@ h3 {
     padding: 10px 16px 20px;
     background: var(--paper);
     border-bottom: 1px solid var(--line);
-    box-shadow: 0 16px 30px rgba(21, 32, 31, 0.12);
+    box-shadow: 0 16px 30px rgba(0, 38, 118, 0.14);
   }
 
   .site-nav.is-open {
@@ -638,7 +638,7 @@ h3 {
   .site-nav .nav-submit {
     display: inline-flex;
     margin-top: 12px;
-    color: var(--white);
+    color: var(--ink);
     border: 0;
   }
 
