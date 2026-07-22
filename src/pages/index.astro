@@ -3,14 +3,11 @@ import {
   ArrowRight,
   ArrowUpRight,
   CalendarDays,
-  Car,
   CheckCircle2,
   FileText,
-  Hotel,
   History,
   Info,
   MapPin,
-  Plane,
   Send
 } from 'lucide-astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
@@ -75,7 +72,14 @@ const eventJsonLd = {
   <section class="event-ribbon" aria-label="Workshop essentials">
     <div class="container event-ribbon__grid">
       <div><CalendarDays size={20} /><span><small>Date</small><strong>{site.date}</strong></span></div>
-      <div><MapPin size={20} /><span><small>Location</small><strong>{site.city}</strong></span></div>
+      <div class="event-location">
+        <MapPin size={20} />
+        <span>
+          <small>Location</small>
+          <strong>{site.city}</strong>
+          <span class="venue-addresses">Moscone Center South, 747 Howard Street<br />Marriott Marquis San Francisco, 780 Mission Street</span>
+        </span>
+      </div>
       <div class="deadline-countdown" data-deadline="2026-08-01T23:59:00-04:00">
         <span class="countdown-value" aria-hidden="true">11</span>
         <span><small>Paper deadline</small><strong>August 1 · 11:59 PM ET</strong></span>
@@ -126,6 +130,12 @@ const eventJsonLd = {
           </ul>
         </article>
       </div>
+      <div class="cfp-topics">
+        <h3>Topics of interest</h3>
+        <ul class="topic-list">
+          {topics.map((topic) => <li>{topic}</li>)}
+        </ul>
+      </div>
       <div class="section-heading section-heading--compact">
         <span class="kicker">Important dates</span>
         <h2>Four dates to keep in view.</h2>
@@ -139,21 +149,6 @@ const eventJsonLd = {
           <FileText size={16} /> View official CFP <ArrowUpRight size={16} />
         </a>
       </div>
-    </div>
-  </section>
-
-  <section class="section section--ink topic-section">
-    <div class="container topic-layout">
-      <div class="topic-intro">
-        <span class="kicker kicker--light">Scope</span>
-        <h2>A broad home for rigorous analytics research.</h2>
-        <p>The workshop welcomes methodological contributions and applications across business and society.</p>
-      </div>
-      <ol class="topic-list">
-        {topics.map((topic, index) => (
-          <li><span>{String(index + 1).padStart(2, '0')}</span>{topic}</li>
-        ))}
-      </ol>
     </div>
   </section>
 
@@ -178,23 +173,6 @@ const eventJsonLd = {
         <div class="program-row"><time>12:00</time><span>Lunch and community conversations</span><em>Details coming soon</em></div>
         <div class="program-row"><time>13:30</time><span>Research presentations and panels</span><em>Details coming soon</em></div>
         <div class="program-row"><time>17:00</time><span>Workshop close</span><em>Details coming soon</em></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--teal venue-section" id="venue">
-    <div class="container venue-grid">
-      <article class="venue-lead">
-        <span class="kicker kicker--light">Venue & Travel</span>
-        <h2>San Francisco, California</h2>
-        <p>The 2026 INFORMS Annual Meeting takes place at Moscone Center South and the Marriott Marquis San Francisco. DMDA is scheduled for Saturday, October 31, with the Annual Meeting beginning November 1.</p>
-        <a class="button button--light" href={site.annualMeetingUrl} target="_blank" rel="noreferrer">Annual Meeting travel information <ArrowUpRight size={16} /></a>
-      </article>
-      <div class="venue-facts">
-        <div><MapPin size={21} /><span><strong>Primary meeting venues</strong><small>Moscone Center South, 747 Howard Street<br />Marriott Marquis San Francisco, 780 Mission Street</small></span></div>
-        <div><Plane size={21} /><span><strong>Nearest airport</strong><small>San Francisco International Airport (SFO)</small></span></div>
-        <div><Car size={21} /><span><strong>Getting around</strong><small>Moscone Center is served by BART, Muni, and downtown streetcar lines.</small></span></div>
-        <div><Hotel size={21} /><span><strong>Hotel block</strong><small>Official INFORMS hotels and booking information will be listed by the Annual Meeting team.</small></span></div>
       </div>
     </div>
   </section>
@@ -324,7 +302,7 @@ const eventJsonLd = {
   .event-ribbon__grid {
     min-height: 104px;
     display: grid;
-    grid-template-columns: 1fr 1.15fr 1.1fr;
+    grid-template-columns: 0.75fr 1.65fr 0.95fr;
   }
 
   .event-ribbon__grid > div {
@@ -357,6 +335,13 @@ const eventJsonLd = {
 
   .event-ribbon strong {
     font-size: 14px;
+  }
+
+  .venue-addresses {
+    margin-top: 5px;
+    color: rgba(255, 253, 250, 0.68);
+    font-size: 12px;
+    line-height: 1.35;
   }
 
   .countdown-value {
@@ -449,48 +434,31 @@ const eventJsonLd = {
     color: var(--ink-soft);
   }
 
-  .topic-layout {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 100px;
+  .cfp-topics {
+    margin-top: 42px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
   }
 
-  .topic-intro {
-    position: sticky;
-    top: 124px;
-    align-self: start;
-  }
-
-  .topic-intro h2 {
-    margin-bottom: 22px;
-    font-size: 48px;
-  }
-
-  .topic-intro p {
-    color: rgba(255, 253, 250, 0.68);
+  .cfp-topics h3 {
+    margin-bottom: 18px;
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 500;
   }
 
   .topic-list {
     margin: 0;
     padding: 0;
     list-style: none;
-    border-top: 1px solid rgba(255, 253, 250, 0.2);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 11px 28px;
   }
 
   .topic-list li {
-    min-height: 59px;
-    display: grid;
-    grid-template-columns: 48px 1fr;
-    align-items: center;
-    gap: 14px;
-    border-bottom: 1px solid rgba(255, 253, 250, 0.2);
-    font-size: 16px;
-  }
-
-  .topic-list span {
-    color: var(--yellow);
-    font-family: var(--serif);
-    font-size: 13px;
+    color: var(--ink-soft);
+    font-size: 14px;
   }
 
   .program-shell {
@@ -567,55 +535,6 @@ const eventJsonLd = {
     color: var(--ink-soft);
     font-size: 12px;
     font-style: normal;
-  }
-
-  .venue-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 90px;
-    align-items: start;
-  }
-
-  .venue-lead h2 {
-    margin-bottom: 22px;
-    font-size: 52px;
-  }
-
-  .venue-lead p {
-    max-width: 550px;
-    margin-bottom: 28px;
-    color: rgba(255, 253, 250, 0.74);
-    font-size: 17px;
-  }
-
-  .venue-facts {
-    border-top: 1px solid rgba(255, 253, 250, 0.24);
-  }
-
-  .venue-facts > div {
-    display: grid;
-    grid-template-columns: 30px 1fr;
-    gap: 15px;
-    padding: 21px 0;
-    border-bottom: 1px solid rgba(255, 253, 250, 0.24);
-  }
-
-  .venue-facts svg {
-    color: var(--yellow);
-  }
-
-  .venue-facts span {
-    display: grid;
-    gap: 7px;
-  }
-
-  .venue-facts strong {
-    font-size: 15px;
-  }
-
-  .venue-facts small {
-    color: rgba(255, 253, 250, 0.68);
-    font-size: 13px;
   }
 
   .organizer-heading {
@@ -797,15 +716,13 @@ const eventJsonLd = {
     }
 
     .intro-grid,
-    .topic-layout,
-    .cfp-grid,
-    .venue-grid {
+    .cfp-grid {
       grid-template-columns: 1fr;
       gap: 42px;
     }
 
-    .topic-intro {
-      position: static;
+    .topic-list {
+      grid-template-columns: 1fr;
     }
 
     .organizer-row {
@@ -871,9 +788,7 @@ const eventJsonLd = {
       border-bottom: 0;
     }
 
-    .intro-grid h2,
-    .topic-intro h2,
-    .venue-lead h2 {
+    .intro-grid h2 {
       font-size: 38px;
     }
 
