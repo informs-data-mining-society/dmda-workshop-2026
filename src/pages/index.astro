@@ -5,7 +5,6 @@ import {
   CalendarDays,
   CheckCircle2,
   FileText,
-  Info,
   MapPin,
   Send
 } from 'lucide-astro';
@@ -157,13 +156,6 @@ const eventJsonLd = {
         <h2>A one-day program in San Francisco.</h2>
         <p>Session times, speakers, and room assignments will be published as the program is finalized.</p>
       </div>
-      <div class="program-notice">
-        <Info size={25} />
-        <div>
-          <h3>The schedule is taking shape.</h3>
-          <p>Research talks, invited perspectives, and conversations on data mining and decision analytics will be added here as sessions are confirmed.</p>
-        </div>
-      </div>
       <div class="program-preview">
         <div class="program-day"><CalendarDays size={19} /><strong>October 31, 2026</strong><span>San Francisco · In person</span></div>
         <div class="program-row"><time>07:30</time><span>Workshop registration and welcome</span><em>Details coming soon</em></div>
@@ -178,10 +170,7 @@ const eventJsonLd = {
   <section class="section section--white organizer-section" id="organizers">
     <div class="container">
       <div class="organizer-heading">
-        <div class="section-heading">
-          <span class="kicker">Workshop co-chairs</span>
-          <h2>Organized across institutions.</h2>
-        </div>
+        <span class="kicker">Workshop co-chairs</span>
       </div>
       <div class="organizer-row">
         {organizers.map((organizer) => (
@@ -434,35 +423,16 @@ const eventJsonLd = {
     max-width: 920px;
   }
 
-  .program-notice {
-    display: grid;
-    grid-template-columns: 32px 1fr;
-    gap: 16px;
-    padding: 28px;
-    color: var(--white);
-    background: var(--teal-dark);
-    border-left: 7px solid var(--yellow);
+  .program-section .section-heading {
+    max-width: none;
   }
 
-  .program-notice svg {
-    color: var(--yellow);
-  }
-
-  .program-notice h3 {
-    margin-bottom: 9px;
-    font-family: var(--serif);
-    font-size: 29px;
-    font-weight: 500;
-  }
-
-  .program-notice p {
-    max-width: 650px;
-    margin-bottom: 0;
-    color: rgba(255, 253, 250, 0.75);
+  .program-section .section-heading h2 {
+    white-space: nowrap;
   }
 
   .program-preview {
-    margin-top: 46px;
+    margin-top: 0;
     border-top: 1px solid var(--line);
   }
 
@@ -511,6 +481,7 @@ const eventJsonLd = {
     align-items: end;
     justify-content: space-between;
     gap: 28px;
+    margin-bottom: 22px;
   }
 
   .organizer-row {
@@ -653,6 +624,10 @@ const eventJsonLd = {
       gap: 42px;
     }
 
+    .program-section .section-heading h2 {
+      white-space: normal;
+    }
+
     .topic-list {
       grid-template-columns: 1fr;
     }
@@ -722,10 +697,6 @@ const eventJsonLd = {
 
     .intro-grid h2 {
       font-size: 38px;
-    }
-
-    .program-notice {
-      padding: 22px;
     }
 
     .program-day {
