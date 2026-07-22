@@ -48,6 +48,11 @@ const eventJsonLd = {
     validThrough: '2026-10-17T23:59:00-04:00'
   }
 };
+const sponsorshipTiers = [
+  { level: 'Platinum Level', detail: 'Sponsor recognition will be listed here.' },
+  { level: 'Gold Level', detail: 'Sponsor recognition will be listed here.' },
+  { level: 'Silver Level', detail: 'Sponsor recognition will be listed here.' }
+];
 ---
 
 <BaseLayout jsonLd={eventJsonLd}>
@@ -167,10 +172,33 @@ const eventJsonLd = {
     </div>
   </section>
 
+  <section class="section sponsorship-section" id="sponsorships">
+    <div class="container">
+      <div class="sponsorship-head">
+        <div class="section-heading">
+          <span class="kicker">Sponsorships</span>
+          <h2>DMDA 2026 sponsorships.</h2>
+          <p>Sponsorship opportunities are organized in three tiers. Sponsor names and logos will be listed here as commitments are confirmed.</p>
+        </div>
+        <a class="button button--secondary" href={`mailto:${organizers[0].email}`}>
+          Contact the co-chairs <ArrowRight size={16} />
+        </a>
+      </div>
+      <div class="sponsorship-tiers">
+        {sponsorshipTiers.map((tier) => (
+          <article class="sponsorship-tier">
+            <span>{tier.level}</span>
+            <p>{tier.detail}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section class="section section--white organizer-section" id="organizers">
     <div class="container">
       <div class="organizer-heading">
-        <span class="kicker">Workshop co-chairs</span>
+        <h2>Workshop co-chairs</h2>
       </div>
       <div class="organizer-row">
         {organizers.map((organizer) => (
@@ -431,6 +459,11 @@ const eventJsonLd = {
     white-space: nowrap;
   }
 
+  .program-section .section-heading p {
+    max-width: none;
+    white-space: nowrap;
+  }
+
   .program-preview {
     margin-top: 0;
     border-top: 1px solid var(--line);
@@ -476,12 +509,65 @@ const eventJsonLd = {
     font-style: normal;
   }
 
+  .sponsorship-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 38px;
+  }
+
+  .sponsorship-head .section-heading {
+    max-width: 720px;
+    margin-bottom: 0;
+  }
+
+  .sponsorship-head .button {
+    flex-shrink: 0;
+  }
+
+  .sponsorship-tiers {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .sponsorship-tier {
+    min-height: 156px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px;
+    background: var(--white);
+    border-top: 6px solid var(--yellow);
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+  }
+
+  .sponsorship-tier span {
+    color: var(--teal-dark);
+    font-family: var(--serif);
+    font-size: 26px;
+  }
+
+  .sponsorship-tier p {
+    margin-bottom: 0;
+    color: var(--ink-soft);
+    font-size: 13px;
+  }
+
   .organizer-heading {
     display: flex;
     align-items: end;
     justify-content: space-between;
     gap: 28px;
-    margin-bottom: 22px;
+    margin-bottom: 30px;
+  }
+
+  .organizer-heading h2 {
+    margin-bottom: 0;
+    font-size: 42px;
   }
 
   .organizer-row {
@@ -628,7 +714,20 @@ const eventJsonLd = {
       white-space: normal;
     }
 
+    .program-section .section-heading p {
+      white-space: normal;
+    }
+
     .topic-list {
+      grid-template-columns: 1fr;
+    }
+
+    .sponsorship-head {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .sponsorship-tiers {
       grid-template-columns: 1fr;
     }
 
@@ -727,6 +826,10 @@ const eventJsonLd = {
     .organizer-heading {
       align-items: flex-start;
       flex-direction: column;
+    }
+
+    .organizer-heading h2 {
+      font-size: 34px;
     }
 
     .organizer-row {
