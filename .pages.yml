@@ -35,8 +35,8 @@ content:
     type: file
     path: src/data/topics.json
     format: json
-  - name: archive
-    label: Previous workshops
+  - name: pastWorkshops
+    label: Past workshops
     type: file
-    path: src/data/archive.json
+    path: src/data/past-workshops.json
     format: json

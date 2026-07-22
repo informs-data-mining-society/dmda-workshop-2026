@@ -2,25 +2,15 @@
 import { ArrowUpRight, Menu, X } from 'lucide-astro';
 import site from '@/data/site.json';
 
-interface Props {
-  currentPath: string;
-}
-
-const { currentPath } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const navItems = [
-  { label: 'Home', href: base },
-  { label: 'Call for Papers', href: `${base}call-for-papers/` },
-  { label: 'Program', href: `${base}program/` },
-  { label: 'Venue', href: `${base}venue/` },
-  { label: 'Organizers', href: `${base}organizers/` },
-  { label: 'Past Workshops', href: `${base}archive/` }
+  { label: 'About', href: `${base}#about` },
+  { label: 'Call for Papers', href: `${base}#call-for-papers` },
+  { label: 'Program', href: `${base}#program` },
+  { label: 'Venue', href: `${base}#venue` },
+  { label: 'Organizers', href: `${base}#organizers` },
+  { label: 'Past Workshops', href: `${base}#past-workshops` }
 ];
-
-const isActive = (href: string) => {
-  if (href === base) return currentPath === base || currentPath === `${base}/`;
-  return currentPath.startsWith(href);
-};
 ---
 
 <div class="society-bar">
@@ -34,7 +24,7 @@ const isActive = (href: string) => {
 
 <header class="site-header" data-header>
   <div class="container header-inner">
-    <a class="brand" href={base} aria-label="DMDA 2026 home">
+    <a class="brand" href={`${base}#top`} aria-label="DMDA 2026 home">
       <span class="brand-mark" aria-hidden="true"><b>DM</b><b>DA</b></span>
       <span class="brand-copy"><strong>DMDA</strong><small>San Francisco · 2026</small></span>
     </a>
@@ -46,7 +36,7 @@ const isActive = (href: string) => {
 
     <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
       {navItems.map((item) => (
-        <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
+        <a href={item.href} data-section-link>{item.label}</a>
       ))}
       <a class="nav-submit" href={site.submissionUrl} target="_blank" rel="noreferrer">
         Submit a paper <ArrowUpRight size={15} />
@@ -73,4 +63,33 @@ const isActive = (href: string) => {
       nav.classList.remove('is-open');
     });
   });
+
+  const sectionLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-section-link]'));
+  const sectionById = new Map(
+    sectionLinks
+      .map((link) => [link.hash.slice(1), link] as const)
+      .filter(([id]) => id.length > 0)
+  );
+
+  const setCurrentSection = (id: string) => {
+    sectionLinks.forEach((link) => link.removeAttribute('aria-current'));
+    sectionById.get(id)?.setAttribute('aria-current', 'location');
+  };
+
+  if ('IntersectionObserver' in window && sectionById.size > 0) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target.id) setCurrentSection(visible.target.id);
+      },
+      { rootMargin: '-35% 0px -55% 0px', threshold: [0, 0.2, 0.5, 0.8] }
+    );
+
+    sectionById.forEach((_link, id) => {
+      const section = document.getElementById(id);
+      if (section) observer.observe(section);
+    });
+  }
 </script>

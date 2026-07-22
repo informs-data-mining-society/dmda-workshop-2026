@@ -1,6 +1,6 @@
 # DMDA Workshop 2026
 
-Public website for the 21st INFORMS Workshop on Data Mining & Decision Analytics, held October 31, 2026 in San Francisco.
+Single-page public website for the 21st INFORMS Workshop on Data Mining & Decision Analytics, held October 31, 2026 in San Francisco.
 
 ## Local development
 
@@ -11,7 +11,7 @@ npm run dev
 
 The production build is generated with `npm run build` and deployed to GitHub Pages by `.github/workflows/deploy.yml`.
 
-Workshop details, deadlines, organizers, topics, and archive links live in `src/data`. These files can also be edited through [Pages CMS](https://app.pagescms.org/) after installing the Pages CMS GitHub App for this repository.
+Workshop details, deadlines, organizers, topics, and past-workshop links live in `src/data`. These files can also be edited through [Pages CMS](https://app.pagescms.org/) after installing the Pages CMS GitHub App for this repository.
 
 ## Content status
 

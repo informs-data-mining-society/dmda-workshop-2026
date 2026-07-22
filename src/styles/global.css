@@ -201,7 +201,7 @@ h3 {
   white-space: nowrap;
 }
 
-.site-nav > a[aria-current='page']::after {
+.site-nav > a[aria-current]::after {
   position: absolute;
   right: 0;
   bottom: -10px;
@@ -312,6 +312,7 @@ h3 {
 
 .section {
   padding-block: 92px;
+  scroll-margin-top: 110px;
 }
 
 .section--white {
@@ -630,7 +631,7 @@ h3 {
     font-size: 15px;
   }
 
-  .site-nav > a[aria-current='page']::after {
+  .site-nav > a[aria-current]::after {
     display: none;
   }
 
