@@ -57,7 +57,7 @@ const sponsorshipTiers = [
 const dataChallengeRegistrationUrl = 'https://forms.gle/snHGp75SbKj1hfry5';
 const dataChallengeAnnouncementUrl = `${base}docs/dm-data-challenge-announcement.pdf`;
 const dataChallengeItems = [
-  { label: 'Eligibility', detail: 'Open to currently enrolled undergraduate and graduate students and postdoctoral researchers. Teams may include up to four members.' },
+  { label: 'Eligibility', detail: 'Open to currently enrolled undergraduate and graduate students and postdoctoral researchers. Teams may include up to four members, and interdisciplinary participation is strongly encouraged.' },
   { label: 'Dataset', detail: 'Hourly county-level outage data from PowerOutage.com are combined with NOAA URMA and ERA5 weather fields across 302 counties from March 11-19, 2026.' },
   { label: 'Data access', detail: 'Registered participants receive an NDA. The Google Drive data package is released after the signed NDA is returned.' },
   { label: 'Prediction task', detail: 'Forecast hourly outage severity index (OSI) for 63 held-out counties over March 14-19 at t+1h, t+6h, t+24h, and t+48h horizons.' },
@@ -208,9 +208,10 @@ const dataChallengeContacts = [
     <div class="container">
       <div class="data-challenge-head">
         <div>
-          <span class="kicker">Data Challenge</span>
+          <span class="kicker">INFORMS 2026 Data Mining Society Data Challenge</span>
           <h2>Forecasting Infrastructure Resilience Under Extreme Weather.</h2>
-          <p>The INFORMS 2026 Data Mining Society Data Challenge asks participants to forecast power outage severity after successive wind-driven storm systems across Indiana, Ohio, Pennsylvania, and West Virginia.</p>
+          <p>Participants will develop spatiotemporal forecasting models using real-world power-outage and weather data to predict county-level outage severity during successive extreme-weather events.</p>
+          <p>The competition is open to currently enrolled undergraduate and graduate students and postdoctoral researchers, with teams of up to four members. Please share this opportunity with interested students, postdoctoral researchers, and colleagues.</p>
         </div>
         <div class="data-challenge-actions">
           <a class="button button--primary" href={dataChallengeRegistrationUrl} target="_blank" rel="noreferrer">
@@ -224,7 +225,7 @@ const dataChallengeContacts = [
 
       <div class="data-challenge-summary" aria-label="Data Challenge summary">
         <article><span>Focus</span><strong>Spatiotemporal outage forecasting</strong></article>
-        <article><span>Participants</span><strong>Students and postdoctoral researchers</strong></article>
+        <article><span>Participants</span><strong>Students and postdocs; teams up to four</strong></article>
         <article><span>Registration deadline</span><strong>August 31, 2026 (AOE)</strong></article>
         <article><span>Submission deadline</span><strong>September 25, 2026 (AOE)</strong></article>
       </div>
@@ -654,6 +655,10 @@ const dataChallengeContacts = [
     margin-bottom: 0;
     color: var(--ink-soft);
     font-size: 18px;
+  }
+
+  .data-challenge-head p + p {
+    margin-top: 12px;
   }
 
   .data-challenge-actions {
