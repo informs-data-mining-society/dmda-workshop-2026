@@ -54,10 +54,29 @@ const sponsorshipTiers = [
   { level: 'Gold Level', detail: 'Sponsor recognition will be listed here.' },
   { level: 'Silver Level', detail: 'Sponsor recognition will be listed here.' }
 ];
+const dataChallengeRegistrationUrl = 'https://forms.gle/snHGp75SbKj1hfry5';
+const dataChallengeAnnouncementUrl = `${base}docs/dm-data-challenge-announcement.pdf`;
 const dataChallengeItems = [
-  { label: 'Problem and data', detail: 'Challenge topic, dataset access, and evaluation criteria will be announced here.' },
-  { label: 'Timeline', detail: 'Registration, testing, leaderboard, finalist, and report deadlines will be posted once confirmed.' },
-  { label: 'Workshop session', detail: 'Finalist teams will present their solutions during a dedicated Data Challenge session at DMDA 2026.' }
+  { label: 'Eligibility', detail: 'Open to currently enrolled undergraduate and graduate students and postdoctoral researchers. Teams may include up to four members.' },
+  { label: 'Dataset', detail: 'Hourly county-level outage data from PowerOutage.com are combined with NOAA URMA and ERA5 weather fields across 302 counties from March 11-19, 2026.' },
+  { label: 'Data access', detail: 'Registered participants receive an NDA. The Google Drive data package is released after the signed NDA is returned.' },
+  { label: 'Prediction task', detail: 'Forecast hourly outage severity index (OSI) for 63 held-out counties over March 14-19 at t+1h, t+6h, t+24h, and t+48h horizons.' },
+  { label: 'Submission package', detail: 'Submit the prediction file, reproducible Python or R code, and a written report of no more than 6 pages excluding references.' },
+  { label: 'Evaluation', detail: 'Finalists are selected using predictive performance and the rigor, novelty, and clarity of the modeling approach. Code review is part of evaluation.' },
+  { label: 'Prizes', detail: 'The top four teams present in San Francisco and receive certificates. Prizes are $1,000, $500, $250, and $125.' }
+];
+const dataChallengeDates = [
+  { date: 'July 2026', label: 'Competition opens', detail: 'Data and templates available after registration and NDA completion.' },
+  { date: 'August 31, 2026', label: 'Registration deadline', detail: 'Anywhere on Earth (AOE).' },
+  { date: 'September 25, 2026', label: 'Submission deadline', detail: 'Predictions, code, and report due Anywhere on Earth (AOE).' },
+  { date: 'October 5, 2026', label: 'Finalist notification', detail: 'Finalist teams are invited to present in San Francisco.' },
+  { date: 'INFORMS 2026 Annual Meeting', label: 'Finalist presentations', detail: 'San Francisco, California' }
+];
+const dataChallengeContacts = [
+  { name: 'Imtiaz Ahmed', email: 'imtiaz.ahmed@mail.wvu.edu', institution: 'West Virginia University' },
+  { name: 'Zimo Wang', email: 'zimo.wang@binghamton.edu', institution: 'Binghamton University' },
+  { name: 'Woody Zhu', email: 'shixianz@andrew.cmu.edu', institution: 'Carnegie Mellon University' },
+  { name: 'Jason Shafer', email: 'jay@poweroutage.us', institution: 'PowerOutage.com' }
 ];
 ---
 
@@ -179,21 +198,40 @@ const dataChallengeItems = [
         <div class="program-row"><time>07:30</time><span>Workshop registration and welcome</span><em>Details coming soon</em></div>
         <div class="program-row"><time>09:00</time><span>Research presentations and invited sessions</span><em>Details coming soon</em></div>
         <div class="program-row"><time>12:00</time><span>Lunch and community conversations</span><em>Details coming soon</em></div>
-        <div class="program-row"><time>13:30</time><span>Research presentations and panels</span><em>Details coming soon</em></div>
+        <div class="program-row"><time>13:30</time><span>Data Challenge finalist presentations</span><em>Details coming soon</em></div>
         <div class="program-row"><time>17:00</time><span>Workshop close</span><em>Details coming soon</em></div>
       </div>
     </div>
   </section>
 
   <section class="section data-challenge-section" id="data-challenge">
-    <div class="container data-challenge-grid">
-      <div>
-        <span class="kicker">Data Challenge</span>
-        <h2>Competition details coming soon.</h2>
+    <div class="container">
+      <div class="data-challenge-head">
+        <div>
+          <span class="kicker">Data Challenge</span>
+          <h2>Forecasting Infrastructure Resilience Under Extreme Weather.</h2>
+          <p>The INFORMS 2026 Data Mining Society Data Challenge asks participants to forecast power outage severity after successive wind-driven storm systems across Indiana, Ohio, Pennsylvania, and West Virginia.</p>
+        </div>
+        <div class="data-challenge-actions">
+          <a class="button button--primary" href={dataChallengeRegistrationUrl} target="_blank" rel="noreferrer">
+            Register for the Data Challenge <ArrowUpRight size={16} />
+          </a>
+          <a class="button button--secondary" href={dataChallengeAnnouncementUrl} target="_blank" rel="noreferrer">
+            <FileText size={16} /> Download announcement <ArrowUpRight size={16} />
+          </a>
+        </div>
       </div>
-      <div class="data-challenge-copy">
-        <p>The Data Challenge has traditionally been organized as part of the DMDA Workshop, with a dedicated session during the workshop for finalist presentations.</p>
+
+      <div class="data-challenge-summary" aria-label="Data Challenge summary">
+        <article><span>Focus</span><strong>Spatiotemporal outage forecasting</strong></article>
+        <article><span>Participants</span><strong>Students and postdoctoral researchers</strong></article>
+        <article><span>Registration deadline</span><strong>August 31, 2026 (AOE)</strong></article>
+        <article><span>Submission deadline</span><strong>September 25, 2026 (AOE)</strong></article>
+      </div>
+
+      <div class="data-challenge-body">
         <div class="data-challenge-items">
+          <h3>Participant information</h3>
           {dataChallengeItems.map((item) => (
             <article>
               <strong>{item.label}</strong>
@@ -201,6 +239,33 @@ const dataChallengeItems = [
             </article>
           ))}
         </div>
+        <div class="data-challenge-timeline">
+          <h3>Challenge timeline</h3>
+          <ol>
+            {dataChallengeDates.map((item) => (
+              <li>
+                <span>{item.date}</span>
+                <div>
+                  <strong>{item.label}</strong>
+                  <p>{item.detail}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+
+      <div class="data-challenge-contact">
+        <h3>Competition co-chairs</h3>
+        <ul>
+          {dataChallengeContacts.map((contact) => (
+            <li>
+              <strong>{contact.name}</strong>
+              <span>{contact.institution}</span>
+              <a href={`mailto:${contact.email}`}>{contact.email}</a>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   </section>
@@ -571,23 +636,81 @@ const dataChallengeItems = [
     font-style: normal;
   }
 
-  .data-challenge-grid {
-    display: grid;
-    grid-template-columns: 0.74fr 1.26fr;
-    gap: 64px;
-    align-items: start;
+  .data-challenge-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 44px;
   }
 
-  .data-challenge-grid h2 {
+  .data-challenge-head h2 {
+    max-width: 800px;
+    margin-bottom: 16px;
+    font-size: 44px;
+  }
+
+  .data-challenge-head p {
+    max-width: 850px;
     margin-bottom: 0;
-    font-size: 42px;
-  }
-
-  .data-challenge-copy > p {
-    max-width: 720px;
-    margin-bottom: 28px;
     color: var(--ink-soft);
     font-size: 18px;
+  }
+
+  .data-challenge-actions {
+    display: flex;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 34px;
+  }
+
+  .data-challenge-summary {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 42px 0 48px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .data-challenge-summary article {
+    min-width: 0;
+    padding: 20px 22px;
+    border-right: 1px solid var(--line);
+  }
+
+  .data-challenge-summary article:first-child {
+    padding-left: 0;
+  }
+
+  .data-challenge-summary article:last-child {
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  .data-challenge-summary span {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--teal);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .data-challenge-summary strong {
+    display: block;
+    color: var(--teal-dark);
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.22;
+  }
+
+  .data-challenge-body {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 56px;
+    align-items: start;
   }
 
   .data-challenge-items {
@@ -596,9 +719,18 @@ const dataChallengeItems = [
     border-top: 1px solid var(--line);
   }
 
+  .data-challenge-items h3,
+  .data-challenge-timeline h3,
+  .data-challenge-contact h3 {
+    margin-bottom: 18px;
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 500;
+  }
+
   .data-challenge-items article {
     display: grid;
-    grid-template-columns: 185px 1fr;
+    grid-template-columns: 170px 1fr;
     gap: 24px;
     padding: 18px 0;
     border-bottom: 1px solid var(--line);
@@ -613,6 +745,100 @@ const dataChallengeItems = [
     margin-bottom: 0;
     color: var(--ink-soft);
     font-size: 14px;
+  }
+
+  .data-challenge-timeline ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+
+  .data-challenge-timeline li {
+    display: grid;
+    grid-template-columns: 158px 1fr;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .data-challenge-timeline li > span {
+    color: var(--teal);
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.25;
+  }
+
+  .data-challenge-timeline strong {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--teal-dark);
+    font-size: 14px;
+  }
+
+  .data-challenge-timeline p {
+    margin-bottom: 0;
+    color: var(--ink-soft);
+    font-size: 13px;
+  }
+
+  .data-challenge-contact {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+
+  .data-challenge-contact ul {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+
+  .data-challenge-contact li {
+    min-width: 0;
+    padding: 18px 18px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .data-challenge-contact li:first-child {
+    padding-left: 0;
+  }
+
+  .data-challenge-contact li:last-child {
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  .data-challenge-contact strong,
+  .data-challenge-contact span,
+  .data-challenge-contact a {
+    display: block;
+  }
+
+  .data-challenge-contact strong {
+    margin-bottom: 5px;
+    color: var(--teal-dark);
+    font-size: 15px;
+  }
+
+  .data-challenge-contact span {
+    margin-bottom: 8px;
+    color: var(--ink-soft);
+    font-size: 12px;
+  }
+
+  .data-challenge-contact a {
+    color: var(--teal-dark);
+    font-size: 12px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+    text-decoration: underline;
+    text-decoration-color: rgba(0, 38, 118, 0.24);
+    text-underline-offset: 4px;
   }
 
   .sponsorship-head {
@@ -830,9 +1056,48 @@ const dataChallengeItems = [
       grid-template-columns: 1fr;
     }
 
-    .data-challenge-grid {
+    .data-challenge-head {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .data-challenge-actions {
+      justify-content: flex-start;
+      padding-top: 0;
+    }
+
+    .data-challenge-summary {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .data-challenge-summary article:nth-child(2) {
+      border-right: 0;
+    }
+
+    .data-challenge-summary article:nth-child(-n + 2) {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .data-challenge-summary article,
+    .data-challenge-summary article:first-child,
+    .data-challenge-summary article:last-child {
+      padding: 18px;
+    }
+
+    .data-challenge-body {
       grid-template-columns: 1fr;
-      gap: 34px;
+      gap: 38px;
+    }
+
+    .data-challenge-contact ul {
+      grid-template-columns: 1fr;
+    }
+
+    .data-challenge-contact li,
+    .data-challenge-contact li:first-child,
+    .data-challenge-contact li:last-child {
+      padding: 16px 0;
+      border-right: 0;
     }
 
     .sponsorship-head {
@@ -931,11 +1196,31 @@ const dataChallengeItems = [
       grid-column: 2;
     }
 
-    .data-challenge-grid h2 {
+    .data-challenge-head h2 {
       font-size: 34px;
     }
 
-    .data-challenge-items article {
+    .data-challenge-summary {
+      grid-template-columns: 1fr;
+    }
+
+    .data-challenge-summary article,
+    .data-challenge-summary article:nth-child(2),
+    .data-challenge-summary article:last-child {
+      border-right: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .data-challenge-summary article:last-child {
+      border-bottom: 0;
+    }
+
+    .data-challenge-actions .button {
+      width: 100%;
+    }
+
+    .data-challenge-items article,
+    .data-challenge-timeline li {
       grid-template-columns: 1fr;
       gap: 5px;
     }
