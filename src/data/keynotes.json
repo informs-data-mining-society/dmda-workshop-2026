@@ -1,0 +1,34 @@
+[
+  {
+    "id": "timothy-chan",
+    "name": "Timothy Chan",
+    "institution": "University of Toronto",
+    "image": "images/timothy-chan.jpg",
+    "imageWidth": 300,
+    "imageHeight": 300,
+    "imageSourceUrl": "https://www.mie.utoronto.ca/wp-content/uploads/2026/07/Tim-Chan-Headshot-Web-2026.jpg",
+    "profileUrl": "https://www.mie.utoronto.ca/faculty_staff/chan/",
+    "time": "9:30-10:30 a.m. PDT",
+    "startDate": "2026-10-31T09:30:00-07:00",
+    "endDate": "2026-10-31T10:30:00-07:00",
+    "title": "Conformal inverse optimization",
+    "abstract": "Inverse optimization is increasingly used to estimate unknown parameters in an optimization model based on decision data. However, when such \"point estimates\" are used to prescribe downstream decisions, the resulting decisions may be of low-quality and misaligned with human intuition, and thus less likely to be adopted. To tackle this challenge, we propose a novel decision recommendation pipeline that learns an uncertainty set for the unknown parameters and then solves a robust optimization model to prescribe new decisions. We show that the suggested decisions can achieve bounded optimality gaps, as evaluated using both the ground-truth parameters and human perceptions. Our method demonstrates strong empirical performance compared to the standard inverse optimization pipeline. Finally, we perform a case study where we apply this new pipeline to provide delivery route recommendations in Toronto, Canada. Our approach achieves a significantly higher delivery path adherence rate than current industry practices without compromising service quality. Moreover, our method provides a better trade-off between absolute and perceived decision quality than baselines under various realistic scenarios, including cases with model mis-specification and data scarcity.",
+    "bio": "Timothy Chan is the Associate Vice-President and Vice-Provost, Strategic Initiatives, and a Professor in the department of Mechanical and Industrial Engineering at the University of Toronto. His primary research interests are in operations research, optimization, and applied machine learning, with applications in healthcare, medicine, sustainability, and sports. He holds editorial roles in several journals including Operations Research, Management Science, and M&SOM. Recent honours include the 2026 JJ Berry Smith Doctoral Supervision Award from the University of Toronto, the 2026 CORS Award of Merit, the 2026 Innovative Application in Analytics Award from the INFORMS Analytics Society, the 2025 CORS Practice Prize, and finalist for the 2025 INFORMS Wagner Prize. Professor Chan received his B.Sc. in Applied Mathematics from UBC and his Ph.D. in Operations Research from MIT. Before coming to Toronto, he was an Associate in the Chicago office of McKinsey and Company."
+  },
+  {
+    "id": "weijie-su",
+    "name": "Weijie Su",
+    "institution": "University of Pennsylvania",
+    "image": "images/weijie-su.jpg",
+    "imageWidth": 1824,
+    "imageHeight": 1943,
+    "imageSourceUrl": "https://faculty.wharton.upenn.edu/wp-content/uploads/2016/11/Weijie_Su_Web_Crop2-1.jpg",
+    "profileUrl": "https://statistics.wharton.upenn.edu/profile/suw/",
+    "time": null,
+    "startDate": null,
+    "endDate": null,
+    "title": null,
+    "abstract": null,
+    "bio": null
+  }
+]

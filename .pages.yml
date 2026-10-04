@@ -30,6 +30,11 @@ content:
     type: file
     path: src/data/organizers.json
     format: json
+  - name: keynotes
+    label: Keynote speakers
+    type: file
+    path: src/data/keynotes.json
+    format: json
   - name: topics
     label: Topics
     type: file

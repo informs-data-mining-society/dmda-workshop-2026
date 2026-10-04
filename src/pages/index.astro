@@ -4,6 +4,7 @@ import {
   ArrowUpRight,
   CalendarDays,
   CheckCircle2,
+  ChevronDown,
   FileText,
   MapPin,
   Send,
@@ -14,9 +15,16 @@ import DeadlineTimeline from '@/components/DeadlineTimeline.astro';
 import pastWorkshops from '@/data/past-workshops.json';
 import site from '@/data/site.json';
 import organizers from '@/data/organizers.json';
+import keynotes from '@/data/keynotes.json';
 import topics from '@/data/topics.json';
 
 const base = import.meta.env.BASE_URL;
+const programTimeFormatter = new Intl.DateTimeFormat('en-GB', {
+  timeZone: 'America/Los_Angeles',
+  hour: '2-digit',
+  minute: '2-digit',
+  hourCycle: 'h23'
+});
 const eventJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Event',
@@ -42,6 +50,13 @@ const eventJsonLd = {
     name: site.sponsor,
     url: 'https://connect.informs.org/data-mining/home'
   },
+  performer: keynotes.map((speaker) => ({
+    '@type': 'Person',
+    name: speaker.name,
+    affiliation: { '@type': 'Organization', name: speaker.institution },
+    image: `https://informs-data-mining-society.github.io${base}${speaker.image}`,
+    url: speaker.profileUrl
+  })),
   offers: {
     '@type': 'Offer',
     url: site.registrationUrl,
@@ -191,15 +206,55 @@ const dataChallengeContacts = [
       <div class="section-heading">
         <span class="kicker">Program</span>
         <h2>A one-day program in San Francisco.</h2>
-        <p>Session times, speakers, and room assignments will be published as the program is finalized.</p>
+        <p>All times are San Francisco local time (PDT). Remaining sessions are tentative.</p>
       </div>
       <div class="program-preview">
         <div class="program-day"><CalendarDays size={19} /><strong>October 31, 2026</strong><span>San Francisco · In person</span></div>
         <div class="program-row"><time>07:30</time><span>Workshop registration and welcome</span><em>Details coming soon</em></div>
         <div class="program-row"><time>09:00</time><span>Research presentations and invited sessions</span><em>Details coming soon</em></div>
+        {keynotes.filter((speaker) => speaker.startDate && speaker.endDate).map((speaker) => (
+          <div class="program-row program-row--keynote">
+            <time datetime={speaker.startDate!}>{programTimeFormatter.format(new Date(speaker.startDate!))}–{programTimeFormatter.format(new Date(speaker.endDate!))}</time>
+            <span><a href={`#${speaker.id}`}>Keynote: {speaker.title}</a></span>
+            <em>{speaker.name}</em>
+          </div>
+        ))}
         <div class="program-row"><time>12:00</time><span>Lunch and community conversations</span><em>Details coming soon</em></div>
         <div class="program-row"><time>13:30</time><span>Data Challenge finalist presentations</span><em>Details coming soon</em></div>
         <div class="program-row"><time>17:00</time><span>Workshop close</span><em>Details coming soon</em></div>
+      </div>
+      <div class="keynote-speakers" aria-labelledby="keynote-heading">
+        <h3 id="keynote-heading">Keynote speakers</h3>
+        {keynotes.map((speaker) => (
+          <article class="keynote-speaker" id={speaker.id}>
+            <img
+              src={`${base}${speaker.image}`}
+              alt={speaker.name}
+              width={speaker.imageWidth}
+              height={speaker.imageHeight}
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="keynote-copy">
+              <h4>{speaker.name}</h4>
+              <p class="keynote-affiliation">{speaker.institution}</p>
+              {speaker.time && <p class="keynote-time"><CalendarDays size={16} />October 31 · {speaker.time}</p>}
+              {speaker.title ? <p class="keynote-title">{speaker.title}</p> : <p class="keynote-pending">Talk details forthcoming.</p>}
+              {speaker.abstract && (
+                <details class="keynote-details">
+                  <summary>Abstract <ChevronDown size={18} aria-hidden="true" /></summary>
+                  <p>{speaker.abstract}</p>
+                </details>
+              )}
+              {speaker.bio && (
+                <details class="keynote-details">
+                  <summary>Biography <ChevronDown size={18} aria-hidden="true" /></summary>
+                  <p>{speaker.bio}</p>
+                </details>
+              )}
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   </section>
@@ -612,7 +667,7 @@ const dataChallengeContacts = [
   .program-row {
     min-height: 79px;
     display: grid;
-    grid-template-columns: 100px 1fr 155px;
+    grid-template-columns: 140px 1fr 155px;
     gap: 20px;
     align-items: center;
     border-bottom: 1px solid var(--line);
@@ -632,6 +687,124 @@ const dataChallengeContacts = [
     color: var(--ink-soft);
     font-size: 12px;
     font-style: normal;
+  }
+
+  .program-row--keynote {
+    border-left: 4px solid var(--yellow);
+    padding-left: 16px;
+  }
+
+  .program-row a {
+    text-decoration-color: var(--line);
+  }
+
+  .keynote-speakers {
+    margin-top: 52px;
+  }
+
+  .keynote-speakers > h3 {
+    margin-bottom: 24px;
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 500;
+  }
+
+  .keynote-speaker {
+    display: grid;
+    grid-template-columns: 176px minmax(0, 1fr);
+    gap: 32px;
+    padding: 30px 0;
+    border-top: 1px solid var(--line);
+    scroll-margin-top: 100px;
+  }
+
+  .keynote-speaker:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .keynote-speaker img {
+    width: 176px;
+    height: 176px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  .keynote-copy h4 {
+    margin: 0 0 6px;
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .keynote-affiliation {
+    margin-bottom: 12px;
+    color: var(--ink-soft);
+    font-size: 15px;
+  }
+
+  .keynote-time {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+    color: var(--teal);
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .keynote-title {
+    margin-bottom: 20px;
+    font-size: 19px;
+    font-weight: 650;
+    line-height: 1.35;
+  }
+
+  .keynote-pending {
+    margin-bottom: 0;
+    color: var(--ink-soft);
+    font-size: 14px;
+  }
+
+  .keynote-details {
+    border-top: 1px solid var(--line);
+  }
+
+  .keynote-details:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .keynote-details summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 0;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .keynote-details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .keynote-details summary:focus-visible {
+    outline: 3px solid var(--yellow);
+    outline-offset: 3px;
+  }
+
+  .keynote-details[open] summary svg {
+    transform: rotate(180deg);
+  }
+
+  .keynote-details p {
+    margin-bottom: 20px;
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.7;
   }
 
   .data-challenge-head {
@@ -1175,13 +1348,22 @@ const dataChallengeContacts = [
     }
 
     .program-row {
-      grid-template-columns: 68px 1fr;
+      grid-template-columns: 110px minmax(0, 1fr);
       gap: 8px 15px;
       padding: 14px 0;
     }
 
     .program-row em {
       grid-column: 2;
+    }
+
+    .program-row time {
+      font-size: 17px;
+    }
+
+    .keynote-speaker {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 20px;
     }
 
     .data-challenge-head h2 {
