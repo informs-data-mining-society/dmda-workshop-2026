@@ -24,11 +24,16 @@
     "imageHeight": 1943,
     "imageSourceUrl": "https://faculty.wharton.upenn.edu/wp-content/uploads/2016/11/Weijie_Su_Web_Crop2-1.jpg",
     "profileUrl": "https://statistics.wharton.upenn.edu/profile/suw/",
-    "time": null,
-    "startDate": null,
-    "endDate": null,
-    "title": null,
-    "abstract": null,
-    "bio": null
+    "bioSourceUrls": [
+      "https://statistics.wharton.upenn.edu/profile/suw/",
+      "https://www.weijie-su.com/",
+      "https://community.amstat.org/copss/awards/presidents"
+    ],
+    "time": "2:30-3:30 p.m. PDT",
+    "startDate": "2026-10-31T14:30:00-07:00",
+    "endDate": "2026-10-31T15:30:00-07:00",
+    "title": "Alignment in Large Language Models: Statistical and Game-Theoretic Perspectives",
+    "abstract": "Large language models (LLMs) are predominantly aligned with human preferences through reinforcement learning from human feedback (RLHF). In this talk, we explore the theoretical foundations of LLM alignment through the intertwined lenses of statistics and game theory. First, we show how the current formulation of RLHF induces a systematic bias we call preference collapse, and how this can be mitigated by introducing a tailored regularization term into the reward function. Next, we expose a fundamental bottleneck of reward-based alignment, demonstrating that cyclic human preferences cannot be faithfully represented by scalar reward models such as the Bradley-Terry model. More precisely, we establish that such cyclic inconsistencies give rise to a lower bound on the approximation error of any scalar reward fitting. Shifting to a game-theoretic perspective, we focus on Nash learning from human feedback and establish several social choice desiderata for this approach to alignment, including the preservation of preference diversity through the emergence of mixed strategies. Finally, we show that the zero-sum game approach generally cannot perfectly match a target preference distribution as a unique Nash equilibrium.",
+    "bio": "Weijie Su is a Professor of Statistics and Data Science at the Wharton School of the University of Pennsylvania, where he co-directs Penn Research in Machine Learning. His research examines the mathematical and statistical foundations of artificial intelligence, including large language models, privacy-preserving data analysis, high-dimensional inference, and optimization. He earned his Ph.D. in Statistics at Stanford University in 2016 and his bachelor's degree in Mathematics at Peking University in 2011. His honors include the 2026 COPSS Presidents' Award, the 2022 SIAM Early Career Prize in Data Science, the 2022 IMS Peter Gavin Hall Early Career Prize, a Sloan Research Fellowship, and an NSF CAREER Award. He is a Fellow of the Institute of Mathematical Statistics and a founding co-editor of Statistical Learning and Data Science."
   }
 ]
