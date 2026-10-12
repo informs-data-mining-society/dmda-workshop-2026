@@ -77,7 +77,7 @@
     "start": "08:00",
     "end": "09:15",
     "room": "205",
-    "chair": "Liyan Xie (University of Minnesota)",
+    "chair": "Duo Wang (Peking University)",
     "description": null,
     "talks": [
       {
@@ -90,18 +90,6 @@
         "title": "R²-HGP: A Double-Regularized Gaussian Process for Heterogeneous Transfer Learning",
         "authors": "Duo Wang, Xinming Wang, Chao Wang, Xiaowei Yue, Jianguo Wu",
         "affiliations": "Peking University; University of Iowa; Tsinghua University",
-        "virtual": false
-      },
-      {
-        "title": "GAMGP: Group-Aware Multi-Output Gaussian Process with Structural Regularization",
-        "authors": "Jiayu Dong, Jianguo Wu, Xinming Wang, Junbo Son, Heng Yong, Hui Xie",
-        "affiliations": "Peking University; China Mobile Jiutian AI Technology; University of Delaware; Institute of Applied Physics and Computational Mathematics",
-        "virtual": false
-      },
-      {
-        "title": "Fixed-Confidence Multi-Response Identification under Structural Uncertainty",
-        "authors": "Jiayu Dong, Jianguo Wu, Yi Wang, Duo Wang",
-        "affiliations": "Peking University",
         "virtual": false
       }
     ],
@@ -132,12 +120,6 @@
         "title": "Safety-Regularized Multi-Agent Reinforcement Learning for Fuel-Limited Naval Search Against Adaptive Targets",
         "authors": "Seung Jin Choi, Elson Cibaku, Daphne Skipper, Anna Svirsko, İ. Esra Büyüktahtakın",
         "affiliations": "Virginia Tech; State University of New York at Plattsburgh; United States Naval Academy",
-        "virtual": false
-      },
-      {
-        "title": "Cooperative Safety-aware Reinforcement Learning via Parallel Active Sequential Testing",
-        "authors": "Pavithra Sripathanallur Murali, Shima Mohebbi",
-        "affiliations": "George Mason University",
         "virtual": false
       }
     ],
