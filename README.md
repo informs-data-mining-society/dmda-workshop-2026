@@ -13,6 +13,8 @@ The production build is generated with `npm run build` and deployed to GitHub Pa
 
 Workshop details, deadlines, organizers, topics, and past-workshop links live in `src/data`. These files can also be edited through [Pages CMS](https://app.pagescms.org/) after installing the Pages CMS GitHub App for this repository.
 
+Program times and room assignments live in `src/data/program.json`. Session chairs, paper titles, authors, affiliations, and Data Challenge teams live in `src/data/program-sessions.json`. Replace `public/docs/2026-dmda-workshop-program.pdf` when the downloadable agenda changes.
+
 ## Content status
 
 The published information is based on the official 2026 INFORMS Annual Meeting listing and the April 29, 2026 call for papers. Update the venue, direct submission link, keynote speakers, and program as those details are confirmed.

@@ -1,0 +1,398 @@
+---
+import { CalendarDays, ChevronDown, FileText, MapPin } from 'lucide-astro';
+import program from '@/data/program.json';
+import sessions from '@/data/program-sessions.json';
+import keynotes from '@/data/keynotes.json';
+
+const base = import.meta.env.BASE_URL;
+const displayDate = new Intl.DateTimeFormat('en-US', {
+  timeZone: 'America/Los_Angeles', weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
+}).format(new Date(`${program.date}T12:00:00-07:00`));
+const sessionsById = new Map(sessions.map((session) => [session.id, session]));
+const rows = program.slots.map((slot) => ({
+  ...slot,
+  roomLabel: slot.rooms.length > 1
+    ? `Rooms ${slot.rooms.join(', ')}`
+    : slot.rooms.length === 1
+      ? `${slot.rooms[0] === program.mainRoom ? 'Main Room' : 'Room'} ${slot.rooms[0]}`
+      : '',
+  keynote: keynotes.find((speaker) => speaker.id === slot.speakerId),
+  sessionDetails: slot.sessions.map((id) => {
+    const session = sessionsById.get(id);
+    if (!session) throw new Error(`Missing program session: ${id}`);
+    return session;
+  })
+}));
+---
+
+<div class="schedule-venue">
+  <div>
+    <p class="schedule-date"><CalendarDays size={16} aria-hidden="true" />{displayDate}</p>
+    <strong><MapPin size={18} aria-hidden="true" />{program.venue}</strong>
+    <p>{program.address} · {program.level}</p>
+    <p>Main Room {program.mainRoom} · Breakouts {program.breakoutRooms.join(', ')}</p>
+  </div>
+  <a class="button button--secondary" href={`${base}${program.pdf}`} download>
+    <FileText size={17} /> Download program
+  </a>
+</div>
+
+<ol class="schedule-list" aria-label="October 31 workshop schedule">
+  {rows.map((row) => (
+    <li class:list={['schedule-row', { 'schedule-row--keynote': row.kind === 'keynote', 'schedule-row--break': row.kind === 'break' }]} data-program-slot={row.id}>
+      <time class="schedule-time" datetime={`${program.date}T${row.start}:00-07:00`}>
+        {row.start}{row.end && `–${row.end}`}
+      </time>
+      {row.sessionDetails.length > 0 ? (
+        <details class="schedule-disclosure">
+          <summary class="schedule-heading">
+            <span class="schedule-title">{row.title}</span>
+            <span class="schedule-meta"><span>{row.roomLabel}</span><ChevronDown size={18} aria-hidden="true" /></span>
+          </summary>
+          <div class="schedule-content">
+            {row.sessionDetails.map((session) => (
+              <section class="schedule-session" id={`program-${session.id}`} aria-label={session.title}>
+                {row.sessionDetails.length > 1 && (
+                  <div class="session-heading">
+                    <h4><span>{session.id}</span> {session.title}</h4>
+                    <p>Room {session.room}</p>
+                  </div>
+                )}
+                {session.chair && <p class="session-chair"><strong>Session Chair:</strong> {session.chair}</p>}
+                {session.description && <p class="session-description">{session.description}</p>}
+                {session.talks.length > 0 && (
+                  <ul class="session-papers">
+                    {session.talks.map((talk) => (
+                      <li>
+                        <h5>{talk.title}</h5>
+                        {talk.virtual && <span class="virtual-presentation">Virtual presentation</span>}
+                        <p class="paper-authors">{talk.authors}</p>
+                        <p class="paper-affiliations">{talk.affiliations}</p>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {session.teams.length > 0 && (
+                  <ul class="challenge-teams">
+                    {session.teams.map((team) => (
+                      <li>
+                        <h4>{team.name}</h4>
+                        {team.members.map((member) => (
+                          <div>
+                            <p class="paper-authors">{member.names}</p>
+                            <p class="paper-affiliations">{member.institution}</p>
+                          </div>
+                        ))}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </section>
+            ))}
+          </div>
+        </details>
+      ) : (
+        <div>
+          <div class="schedule-heading">
+            <span class="schedule-title">{row.speakerId ? <a href={`#${row.speakerId}`}>{row.title}</a> : row.title}</span>
+            {row.roomLabel && <span class="schedule-meta">{row.roomLabel}</span>}
+          </div>
+          {row.keynote && <p class="schedule-keynote-title">{row.keynote.title}</p>}
+        </div>
+      )}
+    </li>
+  ))}
+</ol>
+
+<style>
+  .schedule-venue {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+    border-bottom: 3px solid var(--ink);
+  }
+
+  .schedule-venue strong {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+
+  .schedule-venue p {
+    margin-bottom: 0;
+    color: var(--ink-soft);
+    font-size: 13px;
+  }
+
+  .schedule-venue .button {
+    flex-shrink: 0;
+  }
+
+  .schedule-venue .schedule-date {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .schedule-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .schedule-row {
+    --time-column: 140px;
+    --schedule-gap: 24px;
+    display: grid;
+    grid-template-columns: var(--time-column) minmax(0, 1fr);
+    gap: var(--schedule-gap);
+    align-items: start;
+    min-height: 72px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .schedule-time {
+    color: var(--teal);
+    font-family: var(--serif);
+    font-size: 20px;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+
+  .schedule-row--keynote {
+    padding-left: 16px;
+    border-left: 4px solid var(--yellow);
+  }
+
+  .schedule-row--break {
+    min-height: 56px;
+    padding-block: 14px;
+  }
+
+  .schedule-row--break .schedule-title {
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  .schedule-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 160px;
+    gap: 18px;
+    align-items: start;
+  }
+
+  .schedule-title {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  .schedule-title a {
+    text-decoration-color: var(--line);
+  }
+
+  .schedule-meta {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 10px;
+    color: var(--ink-soft);
+    font-size: 12px;
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  .schedule-meta svg {
+    flex-shrink: 0;
+  }
+
+  .schedule-disclosure summary {
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .schedule-disclosure summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .schedule-disclosure summary:hover .schedule-title {
+    color: var(--teal);
+  }
+
+  .schedule-disclosure summary:focus-visible {
+    outline: 3px solid var(--yellow);
+    outline-offset: 5px;
+  }
+
+  .schedule-disclosure[open] summary svg {
+    transform: rotate(180deg);
+  }
+
+  .schedule-keynote-title {
+    margin: 6px 0 0;
+    color: var(--ink-soft);
+    font-size: 13px;
+  }
+
+  .schedule-content {
+    margin-top: 24px;
+  }
+
+  .schedule-session + .schedule-session {
+    margin-top: 30px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+
+  .session-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 8px;
+  }
+
+  .session-heading h4,
+  .challenge-teams h4 {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.4;
+  }
+
+  .session-heading h4 span {
+    margin-right: 5px;
+    color: var(--teal);
+  }
+
+  .session-heading p {
+    flex-shrink: 0;
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 12px;
+  }
+
+  .session-chair {
+    margin-bottom: 18px;
+    color: var(--ink-soft);
+    font-size: 13px;
+  }
+
+  .session-description {
+    margin-bottom: 20px;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .session-papers,
+  .challenge-teams {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .session-papers li + li,
+  .challenge-teams li + li {
+    margin-top: 20px;
+  }
+
+  .session-papers h5 {
+    margin: 0 0 6px;
+    font-size: 15px;
+    font-weight: 650;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
+  .paper-authors {
+    margin-bottom: 3px;
+    color: var(--ink-soft);
+    font-size: 13px;
+    overflow-wrap: anywhere;
+  }
+
+  .paper-affiliations {
+    margin-bottom: 0;
+    color: var(--ink-soft);
+    font-size: 12px;
+    overflow-wrap: anywhere;
+  }
+
+  .virtual-presentation {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--teal);
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .challenge-teams h4 {
+    margin-bottom: 7px;
+    font-size: 15px;
+  }
+
+  .challenge-teams li > div + div {
+    margin-top: 8px;
+  }
+
+  @media (max-width: 760px) {
+    .schedule-venue {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .schedule-row {
+      --time-column: 110px;
+      --schedule-gap: 16px;
+    }
+
+    .schedule-time {
+      font-size: 17px;
+    }
+
+    .schedule-heading {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 5px;
+    }
+
+    .schedule-meta {
+      justify-content: space-between;
+      text-align: left;
+    }
+
+    .session-heading {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .schedule-content {
+      margin-left: calc(0px - var(--time-column) - var(--schedule-gap));
+    }
+  }
+
+  @media (max-width: 400px) {
+    .schedule-row {
+      --time-column: 95px;
+      --schedule-gap: 12px;
+    }
+
+    .schedule-row--keynote {
+      padding-left: 8px;
+    }
+
+    .schedule-time {
+      font-size: 15px;
+    }
+  }
+</style>
