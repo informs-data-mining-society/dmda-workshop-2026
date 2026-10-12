@@ -35,6 +35,16 @@ content:
     type: file
     path: src/data/keynotes.json
     format: json
+  - name: program
+    label: Program schedule
+    type: file
+    path: src/data/program.json
+    format: json
+  - name: programSessions
+    label: Session papers and participants
+    type: file
+    path: src/data/program-sessions.json
+    format: json
   - name: topics
     label: Topics
     type: file
