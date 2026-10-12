@@ -12,7 +12,6 @@ import {
 } from 'lucide-astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import DeadlineTimeline from '@/components/DeadlineTimeline.astro';
-import WorkshopSchedule from '@/components/WorkshopSchedule.astro';
 import pastWorkshops from '@/data/past-workshops.json';
 import site from '@/data/site.json';
 import organizers from '@/data/organizers.json';
@@ -20,6 +19,26 @@ import keynotes from '@/data/keynotes.json';
 import topics from '@/data/topics.json';
 
 const base = import.meta.env.BASE_URL;
+const programTimeFormatter = new Intl.DateTimeFormat('en-GB', {
+  timeZone: 'America/Los_Angeles',
+  hour: '2-digit',
+  minute: '2-digit',
+  hourCycle: 'h23'
+});
+const programItems = [
+  { startDate: '2026-10-31T07:30:00-07:00', endDate: null, title: 'Workshop registration and welcome', detail: 'Details coming soon', speakerId: null },
+  { startDate: '2026-10-31T09:00:00-07:00', endDate: null, title: 'Research presentations and invited sessions', detail: 'Details coming soon', speakerId: null },
+  { startDate: '2026-10-31T12:00:00-07:00', endDate: null, title: 'Lunch and community conversations', detail: 'Details coming soon', speakerId: null },
+  { startDate: '2026-10-31T13:30:00-07:00', endDate: null, title: 'Data Challenge finalist presentations', detail: 'Details coming soon', speakerId: null },
+  { startDate: '2026-10-31T17:00:00-07:00', endDate: null, title: 'Workshop close', detail: 'Details coming soon', speakerId: null },
+  ...keynotes.filter((speaker) => speaker.startDate && speaker.endDate).map((speaker) => ({
+    startDate: speaker.startDate!,
+    endDate: speaker.endDate,
+    title: `Keynote: ${speaker.title}`,
+    detail: speaker.name,
+    speakerId: speaker.id
+  }))
+].sort((a, b) => Date.parse(a.startDate) - Date.parse(b.startDate));
 const eventJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Event',
@@ -34,7 +53,6 @@ const eventJsonLd = {
     name: site.venue,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '747 Howard Street',
       addressLocality: 'San Francisco',
       addressRegion: 'CA',
       addressCountry: 'US'
@@ -81,7 +99,7 @@ const dataChallengeDates = [
   { date: 'August 31, 2026', label: 'Registration deadline', detail: 'Anywhere on Earth (AOE).' },
   { date: 'September 25, 2026', label: 'Submission deadline', detail: 'Predictions, code, and report due Anywhere on Earth (AOE).' },
   { date: 'October 5, 2026', label: 'Finalist notification', detail: 'Finalist teams are invited to present in San Francisco.' },
-  { date: 'October 31, 2026', label: 'Competition presentations', detail: '3:45-5:00 p.m. PDT · Main Room 203–204, Moscone Center South.' }
+  { date: 'INFORMS 2026 Annual Meeting', label: 'Finalist presentations', detail: 'San Francisco, California' }
 ];
 const dataChallengeContacts = [
   { name: 'Imtiaz Ahmed', email: 'imtiaz.ahmed@mail.wvu.edu', institution: 'West Virginia University' },
@@ -202,9 +220,20 @@ const dataChallengeContacts = [
       <div class="section-heading">
         <span class="kicker">Program</span>
         <h2>A one-day program in San Francisco.</h2>
-        <p>All times are San Francisco local time (PDT). Program subject to change.</p>
+        <p>All times are San Francisco local time (PDT). Remaining sessions are tentative.</p>
       </div>
-      <WorkshopSchedule />
+      <div class="program-preview">
+        <div class="program-day"><CalendarDays size={19} /><strong>October 31, 2026</strong><span>San Francisco · In person</span></div>
+        {programItems.map((item) => (
+          <div class:list={['program-row', { 'program-row--keynote': item.speakerId }]}>
+            <time datetime={item.startDate}>
+              {programTimeFormatter.format(new Date(item.startDate))}{item.endDate && `–${programTimeFormatter.format(new Date(item.endDate))}`}
+            </time>
+            <span>{item.speakerId ? <a href={`#${item.speakerId}`}>{item.title}</a> : item.title}</span>
+            <em>{item.detail}</em>
+          </div>
+        ))}
+      </div>
       <div class="keynote-speakers" aria-labelledby="keynote-heading">
         <h3 id="keynote-heading">Keynote speakers</h3>
         {keynotes.map((speaker) => (
@@ -624,6 +653,60 @@ const dataChallengeContacts = [
   .program-section .section-heading p {
     max-width: none;
     white-space: nowrap;
+  }
+
+  .program-preview {
+    margin-top: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .program-day {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 0;
+    color: var(--teal-dark);
+    border-bottom: 3px solid var(--teal-dark);
+  }
+
+  .program-day span {
+    margin-left: auto;
+    color: var(--ink-soft);
+    font-size: 13px;
+  }
+
+  .program-row {
+    min-height: 79px;
+    display: grid;
+    grid-template-columns: 140px 1fr 155px;
+    gap: 20px;
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .program-row time {
+    color: var(--teal);
+    font-family: var(--serif);
+    font-size: 20px;
+  }
+
+  .program-row span {
+    font-weight: 650;
+  }
+
+  .program-row em {
+    color: var(--ink-soft);
+    font-size: 12px;
+    font-style: normal;
+  }
+
+  .program-row--keynote {
+    border-left: 4px solid var(--yellow);
+    padding-left: 16px;
+  }
+
+  .program-row a {
+    text-decoration-color: var(--line);
   }
 
   .keynote-speakers {
@@ -1263,6 +1346,30 @@ const dataChallengeContacts = [
 
     .intro-grid h2 {
       font-size: 38px;
+    }
+
+    .program-day {
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .program-day span {
+      width: 100%;
+      margin-left: 31px;
+    }
+
+    .program-row {
+      grid-template-columns: 110px minmax(0, 1fr);
+      gap: 8px 15px;
+      padding: 14px 0;
+    }
+
+    .program-row em {
+      grid-column: 2;
+    }
+
+    .program-row time {
+      font-size: 17px;
     }
 
     .keynote-speaker {
