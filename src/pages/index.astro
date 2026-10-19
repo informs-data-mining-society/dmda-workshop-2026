@@ -17,6 +17,7 @@ import pastWorkshops from '@/data/past-workshops.json';
 import site from '@/data/site.json';
 import organizers from '@/data/organizers.json';
 import keynotes from '@/data/keynotes.json';
+import sponsorshipTiers from '@/data/sponsors.json';
 import topics from '@/data/topics.json';
 
 const base = import.meta.env.BASE_URL;
@@ -60,11 +61,6 @@ const eventJsonLd = {
     validThrough: '2026-10-17T23:59:00-04:00'
   }
 };
-const sponsorshipTiers = [
-  { level: 'Platinum Level', detail: 'Sponsor recognition will be listed here.' },
-  { level: 'Gold Level', detail: 'Sponsor recognition will be listed here.' },
-  { level: 'Silver Level', detail: 'Sponsor recognition will be listed here.' }
-];
 const dataChallengeRegistrationUrl = 'https://forms.gle/snHGp75SbKj1hfry5';
 const dataChallengeAnnouncementUrl = `${base}docs/dm-data-challenge-announcement.pdf`;
 const dataChallengeItems = [
@@ -314,14 +310,31 @@ const dataChallengeContacts = [
         <div class="section-heading">
           <span class="kicker">Sponsorships</span>
           <h2>DMDA 2026 sponsorships.</h2>
-          <p>Sponsorship opportunities are organized in three tiers. Sponsor names and logos will be listed here as commitments are confirmed.</p>
+          <p>With thanks to our 2026 sponsors.</p>
         </div>
       </div>
       <div class="sponsorship-tiers">
         {sponsorshipTiers.map((tier) => (
           <article class="sponsorship-tier">
-            <span>{tier.level}</span>
-            <p>{tier.detail}</p>
+            <h3>{tier.level}</h3>
+            <div class="sponsor-logos">
+              {tier.sponsors.map((sponsor) => (
+                <figure class="sponsor">
+                  <div class="sponsor-logo">
+                    <img
+                      src={`${base}${sponsor.logo}`}
+                      alt={`${sponsor.name}${sponsor.unit ? `, ${sponsor.unit}` : ''} logo`}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <figcaption>
+                    <strong>{sponsor.name}</strong>
+                    {sponsor.unit && <span>{sponsor.unit}</span>}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
           </article>
         ))}
       </div>
@@ -956,34 +969,69 @@ const dataChallengeContacts = [
   .sponsorship-tiers {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 14px;
-    max-width: 860px;
   }
 
   .sponsorship-tier {
-    min-height: 92px;
     display: grid;
-    grid-template-columns: 230px 1fr;
-    gap: 24px;
-    align-items: center;
-    padding: 22px 24px;
-    background: var(--white);
+    grid-template-columns: 170px minmax(0, 1fr);
+    gap: 32px;
+    align-items: start;
+    padding-block: 32px;
     border-top: 1px solid var(--line);
-    border-right: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    border-left: 6px solid var(--yellow);
   }
 
-  .sponsorship-tier span {
+  .sponsorship-tier h3 {
+    margin: 0;
+    padding-top: 12px;
     color: var(--teal-dark);
     font-family: var(--serif);
     font-size: 26px;
+    font-weight: 500;
   }
 
-  .sponsorship-tier p {
-    margin-bottom: 0;
+  .sponsor-logos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+  }
+
+  .sponsor {
+    min-width: 0;
+    margin: 0;
+    text-align: center;
+  }
+
+  .sponsor-logo {
+    height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: #fff;
+  }
+
+  .sponsor-logo img {
+    width: 100%;
+    height: 100%;
+    max-width: 360px;
+    object-fit: contain;
+  }
+
+  .sponsor figcaption {
+    margin-top: 14px;
     color: var(--ink-soft);
     font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .sponsor figcaption strong,
+  .sponsor figcaption span {
+    display: block;
+  }
+
+  .sponsor figcaption strong {
+    color: var(--ink);
+    font-size: 16px;
   }
 
   .organizer-heading {
@@ -1194,8 +1242,13 @@ const dataChallengeContacts = [
       border-right: 0;
     }
 
-    .sponsorship-tiers {
+    .sponsorship-tier {
       grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .sponsorship-tier h3 {
+      padding-top: 0;
     }
 
     .organizer-row {
@@ -1299,10 +1352,9 @@ const dataChallengeContacts = [
       gap: 5px;
     }
 
-    .sponsorship-tier {
+    .sponsor-logos {
       grid-template-columns: 1fr;
-      gap: 7px;
-      padding: 20px;
+      gap: 28px;
     }
 
     .past-compact {

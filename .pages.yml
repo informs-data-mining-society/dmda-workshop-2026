@@ -35,6 +35,11 @@ content:
     type: file
     path: src/data/keynotes.json
     format: json
+  - name: sponsors
+    label: Sponsors
+    type: file
+    path: src/data/sponsors.json
+    format: json
   - name: program
     label: Program schedule
     type: file

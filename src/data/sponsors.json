@@ -1,0 +1,47 @@
+[
+  {
+    "level": "Platinum Level",
+    "sponsors": [
+      {
+        "name": "University of Iowa",
+        "unit": "Tippie College of Business",
+        "logo": "images/sponsors/iowa-tippie.png"
+      },
+      {
+        "name": "University of Massachusetts Lowell",
+        "unit": "Manning School of Business",
+        "logo": "images/sponsors/umass-lowell-manning.png"
+      }
+    ]
+  },
+  {
+    "level": "Gold Level",
+    "sponsors": [
+      {
+        "name": "Binghamton University",
+        "unit": "School of Systems Science and Industrial Engineering",
+        "logo": "images/sponsors/binghamton-ssie.png"
+      },
+      {
+        "name": "The University of Texas at Arlington",
+        "unit": "",
+        "logo": "images/sponsors/ut-arlington.png"
+      }
+    ]
+  },
+  {
+    "level": "Silver Level",
+    "sponsors": [
+      {
+        "name": "University of Miami",
+        "unit": "Industrial & Systems Engineering",
+        "logo": "images/sponsors/miami-ise.png"
+      },
+      {
+        "name": "The University of Alabama in Huntsville",
+        "unit": "College of Business",
+        "logo": "images/sponsors/uah-business.png"
+      }
+    ]
+  }
+]
