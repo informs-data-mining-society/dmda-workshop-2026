@@ -4,8 +4,8 @@
     "title": "Conformal Inference and Distributional Risk",
     "start": "08:00",
     "end": "09:15",
-    "room": "201",
-    "chair": "Wenbin Zhou (Carnegie Mellon University)",
+    "room": "211",
+    "chair": "Shuyi Chen (Carnegie Mellon University)",
     "description": null,
     "talks": [
       {
@@ -25,12 +25,6 @@
         "authors": "Shuyi Chen, Wenbin Zhou, Shixiang Zhu",
         "affiliations": "Carnegie Mellon University",
         "virtual": false
-      },
-      {
-        "title": "Distributionally Robust Inference for Delayed Point Processes",
-        "authors": "Zewei Deng, Shuyi Chen, Shixiang Zhu, Liyan Xie",
-        "affiliations": "University of Minnesota; Carnegie Mellon University",
-        "virtual": false
       }
     ],
     "teams": []
@@ -40,8 +34,8 @@
     "title": "Large Language Models and Human Expertise",
     "start": "08:00",
     "end": "09:15",
-    "room": "202",
-    "chair": "Neha Sharma (University of Pennsylvania)",
+    "room": "214–215",
+    "chair": "Prakhar Saxena (University of Pennsylvania)",
     "description": null,
     "talks": [
       {
@@ -73,34 +67,10 @@
   },
   {
     "id": "A3",
-    "title": "Transfer Learning and Structured Statistical Models",
-    "start": "08:00",
-    "end": "09:15",
-    "room": "205",
-    "chair": "Duo Wang (Peking University)",
-    "description": null,
-    "talks": [
-      {
-        "title": "UME: A Unified Meta-Generalization Framework for Cross-Domain ETA",
-        "authors": "Duo Wang, Qiong Wu, Ruiyu Xu, Jianguo Wu, Jinhui Yi, Zhonggen Sun, Zhentao Zhang, Yu Zhang",
-        "affiliations": "Peking University; Meituan",
-        "virtual": false
-      },
-      {
-        "title": "R²-HGP: A Double-Regularized Gaussian Process for Heterogeneous Transfer Learning",
-        "authors": "Duo Wang, Xinming Wang, Chao Wang, Xiaowei Yue, Jianguo Wu",
-        "affiliations": "Peking University; University of Iowa; Tsinghua University",
-        "virtual": false
-      }
-    ],
-    "teams": []
-  },
-  {
-    "id": "A4",
     "title": "Reinforcement Learning and Sequential Search",
     "start": "08:00",
     "end": "09:15",
-    "room": "206",
+    "room": "212",
     "chair": "Nipun Galande (Virginia Tech)",
     "description": null,
     "talks": [
@@ -126,24 +96,18 @@
     "teams": []
   },
   {
-    "id": "A5",
-    "title": "Causal Learning and Experimental Decisions",
+    "id": "A4",
+    "title": "Statistical Learning and Experimental Decisions",
     "start": "08:00",
     "end": "09:15",
-    "room": "203–204",
-    "chair": "Angela Zhou (University of Southern California)",
+    "room": "213",
+    "chair": "Zewei Deng (University of Minnesota)",
     "description": null,
     "talks": [
       {
         "title": "Causal Discovery from Heteroscedastic Stochastic Dynamical Systems under Imperfect Physical Model",
         "authors": "Jianhong Chen, Naichen Shi, Xubo Yue",
         "affiliations": "Northeastern University; Northwestern University",
-        "virtual": false
-      },
-      {
-        "title": "Jigsaw-CRL: Recovering Global Latent Causal Order from Fragmented Multi-Client Interventions",
-        "authors": "Haijie Xu, Chen Zhang",
-        "affiliations": "Tsinghua University",
         "virtual": false
       },
       {
@@ -157,6 +121,12 @@
         "authors": "Haozhe Xu, Kan Xu",
         "affiliations": "The University of Hong Kong; Arizona State University",
         "virtual": false
+      },
+      {
+        "title": "Distributionally Robust Inference for Delayed Point Processes",
+        "authors": "Zewei Deng, Shuyi Chen, Shixiang Zhu, Liyan Xie",
+        "affiliations": "University of Minnesota; Carnegie Mellon University",
+        "virtual": false
       }
     ],
     "teams": []
@@ -166,7 +136,7 @@
     "title": "Best Paper Competition · Theoretical Track",
     "start": "10:45",
     "end": "12:00",
-    "room": "203–204",
+    "room": "214–215",
     "chair": null,
     "description": null,
     "talks": [
@@ -202,7 +172,7 @@
     "title": "Clinical Prediction and Patient Heterogeneity",
     "start": "10:45",
     "end": "12:00",
-    "room": "201",
+    "room": "213",
     "chair": "Carol Gao (Massachusetts Institute of Technology)",
     "description": null,
     "talks": [
@@ -232,7 +202,7 @@
     "title": "Forecasting and Optimization for Complex Systems",
     "start": "10:45",
     "end": "12:00",
-    "room": "202",
+    "room": "211",
     "chair": "Chengyi Cai (Carnegie Mellon University)",
     "description": null,
     "talks": [
@@ -268,16 +238,10 @@
     "title": "Robust and Distributed Machine Learning",
     "start": "10:45",
     "end": "12:00",
-    "room": "205",
+    "room": "212",
     "chair": "Ying Lin (University of Houston)",
     "description": null,
     "talks": [
-      {
-        "title": "HALO: A Generative-Discriminative Method for Class-Incremental Learning",
-        "authors": "Jungmin Kim, Yating Fang, Qianqian Zhao, Ryan Sills, Ahmed Aziz Ezzat",
-        "affiliations": "Rutgers University",
-        "virtual": false
-      },
       {
         "title": "Robust Online Multi-task Learning Under Data Corruption",
         "authors": "Tanapol Kosolwattana, Huazheng Wang, Ying Lin",
@@ -304,7 +268,7 @@
     "title": "Best Paper Competition · Applied Track",
     "start": "13:00",
     "end": "14:15",
-    "room": "203–204",
+    "room": "214–215",
     "chair": null,
     "description": null,
     "talks": [
@@ -340,7 +304,7 @@
     "title": "Industrial Monitoring and Adaptive Optimization",
     "start": "13:00",
     "end": "14:15",
-    "room": "201",
+    "room": "211",
     "chair": "Runxiong Wu (University of Wisconsin–Madison)",
     "description": null,
     "talks": [
@@ -373,25 +337,13 @@
   },
   {
     "id": "C2",
-    "title": "Environmental Analytics and Sustainability",
+    "title": "Predictive Analytics and Sustainability",
     "start": "13:00",
     "end": "14:15",
-    "room": "202",
-    "chair": "Jiaxiang Ji (Rutgers University)",
+    "room": "212",
+    "chair": "Cristobal Heredia Galleguillos (University of South Florida)",
     "description": null,
     "talks": [
-      {
-        "title": "Operationalizing Experimental Design: Data Collection for Remote Ocean Monitoring",
-        "authors": "Jean Pauphilet, Baizhi Song",
-        "affiliations": "London Business School",
-        "virtual": false
-      },
-      {
-        "title": "A Deep Zero-Inflated Spatio-Temporal Model for Marine Endangered Species Monitoring with Applications to Marine Conservation Planning",
-        "authors": "Jiaxiang Ji, Laura Nazzaro, Josh Kohut, Ahmed Aziz Ezzat",
-        "affiliations": "Rutgers University",
-        "virtual": false
-      },
       {
         "title": "From Wildfire Forecasts to Relief and Recovery Pressure: A Decision-Aware Physics-AI Framework for Wildland-Urban Fires",
         "authors": "Yao Zhao, Soohyun Cho, Wayne Wu, Jaeyeon Kim",
@@ -403,6 +355,12 @@
         "authors": "Xiaochuan Ma, Xinyu Lu",
         "affiliations": "Zhejiang University; The Chinese University of Hong Kong, Shenzhen",
         "virtual": false
+      },
+      {
+        "title": "CEDAR: CUDA-Enabled Decision-Tree Algorithm for Regression",
+        "authors": "Cristobal Heredia Galleguillos, Yifan Li, Pedro Chumpitaz Flores, Kaixun Hua",
+        "affiliations": "University of South Florida; University of Illinois Urbana-Champaign",
+        "virtual": false
       }
     ],
     "teams": []
@@ -412,7 +370,7 @@
     "title": "Learning and Language Models for Optimization",
     "start": "13:00",
     "end": "14:15",
-    "room": "205",
+    "room": "213",
     "chair": "Tinghan Ye (Georgia Institute of Technology)",
     "description": null,
     "talks": [
@@ -433,12 +391,6 @@
         "authors": "Jiaxiao Fang, Thiago Serra",
         "affiliations": "University of Iowa",
         "virtual": false
-      },
-      {
-        "title": "CEDAR: CUDA-Enabled Decision-Tree Algorithm for Regression",
-        "authors": "Cristobal Heredia Galleguillos, Yifan Li, Pedro Chumpitaz Flores, Kaixun Hua",
-        "affiliations": "University of South Florida; University of Illinois Urbana-Champaign",
-        "virtual": false
       }
     ],
     "teams": []
@@ -448,7 +400,7 @@
     "title": "INFORMS DMS Data Challenge",
     "start": "15:45",
     "end": "17:00",
-    "room": "203–204",
+    "room": "214–215",
     "chair": null,
     "description": "Forecasting Infrastructure Resilience Under Extreme Weather",
     "talks": [],
@@ -497,11 +449,11 @@
   },
   {
     "id": "D1",
-    "title": "Social Analytics and Organizational AI",
+    "title": "Social Analytics and Organizational Decisions",
     "start": "15:45",
     "end": "17:00",
-    "room": "201",
-    "chair": "Yanhan (Savannah) Tang (Southern Methodist University)",
+    "room": "212",
+    "chair": "Miriam Zhou (Carnegie Mellon University)",
     "description": null,
     "talks": [
       {
@@ -521,23 +473,35 @@
         "authors": "Joy Atagamen, Abiodun Modupe",
         "affiliations": "Houston Christian University; University of Pretoria",
         "virtual": false
+      },
+      {
+        "title": "Clinical Capacity Requirements for Adopting Medical AI Updates under FDA’s Predetermined Change Control Plan",
+        "authors": "Miriam Zhou",
+        "affiliations": "Carnegie Mellon University",
+        "virtual": false
       }
     ],
     "teams": []
   },
   {
     "id": "D2",
-    "title": "Forecasting and Simulation Uncertainty",
+    "title": "Predictive Modeling and Simulation",
     "start": "15:45",
     "end": "17:00",
-    "room": "202",
+    "room": "213",
     "chair": "Mohammadmahdi Ghasemloo (Texas A&M University)",
     "description": null,
     "talks": [
       {
-        "title": "Bet on Features: Anytime-Valid and Feature-Aware Auditing of Conditional Quantile Forecasters",
-        "authors": "Ivane Antonov, Sohom Mukherjee, Richard Pibernik, Yo Joong Choe",
-        "affiliations": "Julius-Maximilians-Universität Würzburg; Zaragoza Logistics Center; INSEAD",
+        "title": "FunSearch and LLM-Guided Discovery of Interpretable Dengue Models for Public Health Decision Support",
+        "authors": "Sushyanth Sridhar, Michael Robert, Esra Buyuktahtakin",
+        "affiliations": "Virginia Tech",
+        "virtual": false
+      },
+      {
+        "title": "MetaboLLM: a metabolomics-specialized large language model for biochemical knowledge integration and predictive metabolite graph construction",
+        "authors": "Dohyun Ku, Min Gu Kwak, Francisco J. Pasquel, Jing Li",
+        "affiliations": "Georgia Institute of Technology; Capital One; Emory University",
         "virtual": false
       },
       {
@@ -557,41 +521,11 @@
   },
   {
     "id": "D3",
-    "title": "Medical AI and Biomedical Knowledge",
-    "start": "15:45",
-    "end": "17:00",
-    "room": "205",
-    "chair": "Miriam Zhou (Carnegie Mellon University)",
-    "description": null,
-    "talks": [
-      {
-        "title": "FunSearch and LLM-Guided Discovery of Interpretable Dengue Models for Public Health Decision Support",
-        "authors": "Sushyanth Sridhar, Michael Robert, Esra Buyuktahtakin",
-        "affiliations": "Virginia Tech",
-        "virtual": false
-      },
-      {
-        "title": "MetaboLLM: a metabolomics-specialized large language model for biochemical knowledge integration and predictive metabolite graph construction",
-        "authors": "Dohyun Ku, Min Gu Kwak, Francisco J. Pasquel, Jing Li",
-        "affiliations": "Georgia Institute of Technology; Capital One; Emory University",
-        "virtual": false
-      },
-      {
-        "title": "Clinical Capacity Requirements for Adopting Medical AI Updates under FDA’s Predetermined Change Control Plan",
-        "authors": "Miriam Zhou",
-        "affiliations": "Carnegie Mellon University",
-        "virtual": false
-      }
-    ],
-    "teams": []
-  },
-  {
-    "id": "D4",
     "title": "Data Collection and Adaptive Decision Learning",
     "start": "15:45",
     "end": "17:00",
-    "room": "206",
-    "chair": "Jongmin Mun (University of Southern California)",
+    "room": "211",
+    "chair": "Arian Aflaki (University of Pittsburgh)",
     "description": null,
     "talks": [
       {
@@ -613,9 +547,9 @@
         "virtual": false
       },
       {
-        "title": "Minority Reports: Balancing Cost and Accuracy in Data Annotation",
-        "authors": "Hsuan Wei Liao, Christopher Klugmann, Daniel Kondermann, Rafid Mahmood",
-        "affiliations": "University of Ottawa; Wayve",
+        "title": "Bet on Features: Anytime-Valid and Feature-Aware Auditing of Conditional Quantile Forecasters",
+        "authors": "Ivane Antonov, Sohom Mukherjee, Richard Pibernik, Yo Joong Choe",
+        "affiliations": "Julius-Maximilians-Universität Würzburg; Zaragoza Logistics Center; INSEAD",
         "virtual": false
       }
     ],

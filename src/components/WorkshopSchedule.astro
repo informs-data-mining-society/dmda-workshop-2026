@@ -30,7 +30,7 @@ const rows = program.slots.map((slot) => ({
     <p class="schedule-date"><CalendarDays size={16} aria-hidden="true" />{displayDate}</p>
     <strong><MapPin size={18} aria-hidden="true" />{program.venue}</strong>
     <p>{program.address} · {program.level}</p>
-    <p>Main Room {program.mainRoom} · Breakouts {program.breakoutRooms.join(', ')}</p>
+    <p>Main Room {program.mainRoom} (combined) · Breakouts {program.breakoutRooms.join(', ')}</p>
   </div>
   <a class="button button--secondary" href={`${base}${program.pdf}`} download>
     <FileText size={17} /> Download program

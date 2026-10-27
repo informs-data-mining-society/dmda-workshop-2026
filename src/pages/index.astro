@@ -17,6 +17,7 @@ import pastWorkshops from '@/data/past-workshops.json';
 import site from '@/data/site.json';
 import organizers from '@/data/organizers.json';
 import keynotes from '@/data/keynotes.json';
+import program from '@/data/program.json';
 import sponsorshipTiers from '@/data/sponsors.json';
 import topics from '@/data/topics.json';
 
@@ -77,7 +78,7 @@ const dataChallengeDates = [
   { date: 'August 31, 2026', label: 'Registration deadline', detail: 'Anywhere on Earth (AOE).' },
   { date: 'September 25, 2026', label: 'Submission deadline', detail: 'Predictions, code, and report due Anywhere on Earth (AOE).' },
   { date: 'October 5, 2026', label: 'Finalist notification', detail: 'Finalist teams are invited to present in San Francisco.' },
-  { date: 'October 31, 2026', label: 'Competition presentations', detail: '3:45-5:00 p.m. PDT · Main Room 203–204, Moscone Center South.' }
+  { date: 'October 31, 2026', label: 'Competition presentations', detail: `3:45-5:00 p.m. PDT · Main Room ${program.mainRoom}, ${program.venue}.` }
 ];
 const dataChallengeContacts = [
   { name: 'Imtiaz Ahmed', email: 'imtiaz.ahmed@mail.wvu.edu', institution: 'West Virginia University' },
@@ -113,6 +114,7 @@ const dataChallengeContacts = [
           <small>Location</small>
           <strong>{site.city}</strong>
           <span class="venue-addresses">Moscone Center South, 747 Howard Street<br />Marriott Marquis San Francisco, 780 Mission Street</span>
+          <span class="venue-rooms">Workshop: {program.venue}, {program.level}<br />Main Room {program.mainRoom} · Breakouts {program.breakoutRooms.join(', ')}</span>
         </span>
       </div>
       <div class="deadline-countdown">
@@ -482,6 +484,12 @@ const dataChallengeContacts = [
     color: rgba(255, 253, 250, 0.68);
     font-size: 12px;
     line-height: 1.35;
+  }
+
+  .venue-rooms {
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.4;
   }
 
   .intro-grid {
