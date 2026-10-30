@@ -34,7 +34,7 @@
     "title": "Large Language Models and Human Expertise",
     "start": "08:00",
     "end": "09:15",
-    "room": "214–215",
+    "room": "215",
     "chair": "Prakhar Saxena (University of Pennsylvania)",
     "description": null,
     "talks": [
@@ -136,7 +136,7 @@
     "title": "Best Paper Competition · Theoretical Track",
     "start": "10:45",
     "end": "12:00",
-    "room": "214–215",
+    "room": "215",
     "chair": null,
     "description": null,
     "talks": [
@@ -268,7 +268,7 @@
     "title": "Best Paper Competition · Applied Track",
     "start": "13:00",
     "end": "14:15",
-    "room": "214–215",
+    "room": "215",
     "chair": null,
     "description": null,
     "talks": [
@@ -400,7 +400,7 @@
     "title": "INFORMS DMS Data Challenge",
     "start": "15:45",
     "end": "17:00",
-    "room": "214–215",
+    "room": "215",
     "chair": null,
     "description": "Forecasting Infrastructure Resilience Under Extreme Weather",
     "talks": [],
